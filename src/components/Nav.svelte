@@ -7,7 +7,8 @@
     font-weight: 400;
     padding: 0 1em;
     min-height: 54px;
-    display: grid;
+    display: flex;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: center;
     grid-template-columns: repeat(4, 110px);
@@ -30,7 +31,7 @@
 
 <nav>
   <a class="{segment === undefined ? 'selected' : undefined}" href=".">Home</a>
-  <a class="{segment === 'about' ?   'selected' : undefined}" href="about">About Me</a>
   <a class="{segment === 'experience' ? 'selected' : undefined}" href="experience">Experience</a>
-  <a class="{segment === 'website' ? 'selected' : undefined}" href="experience">About This Site</a>
+  <a class="{segment === 'about' ?   'selected' : undefined}" href="about">About Me</a>
+  <a class="{segment === 'website' ? 'selected' : undefined}" href="website">About This Site</a>
 </nav>
