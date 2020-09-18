@@ -34,4 +34,5 @@
   <a class="{segment === 'experience' ? 'selected' : undefined}" href="experience">Experience</a>
   <a class="{segment === 'about' ?   'selected' : undefined}" href="about">About Me</a>
   <a class="{segment === 'website' ? 'selected' : undefined}" href="website">About This Site</a>
+  <a href="NicholasFittonCV.pdf">CV</a>
 </nav>

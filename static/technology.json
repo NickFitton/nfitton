@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Java","category": ["language","java"],"color": "#3482a1","icon": "images/icons/java.svg"
+  },
+  {
+    "name": "Groovy","category": ["language","java"],"color": "#3482a1"
+  },
+  {
+    "name": "JavaScript","icon": "images/icons/javascript.svg","color": "#f8dc3d","category": ["frontend","language"],"inverted": true
+  },
+  {
+    "name": "TypeScript","icon": "images/icons/typescript.svg","color": "#3179c6","category": ["frontend","language"]
+  },
+  {
+    "name": "Spock","category": ["java","testing"],"color": "#3482a1"
+  },
+  {
+    "name": "Cypress","icon": "images/icons/cypress.svg","category": ["frontend","testing"],"color": "#25262e"
+  },
+  {
+    "name": "Svelte","category": ["framework","frontend"],"icon": "images/icons/svelte.svg","color": "#ff3e00"
+  },
+  {
+    "name": "Angular","category": ["framework","frontend"],"icon": "images/icons/angular.svg","color": "#c3002e","experience": ["I have spent most of my professional career working with angular. Starting with Angular 4 during my internship with Post-Quantum and upgrading our way through to Angular 9.","I have worked with Angular 10 in my spare time, experimenting with it's new features and the Ivy compiler."]
+  },
+  {
+    "name": "Vue","category": ["framework","frontend"],"icon": "images/icons/vue.svg","color": "#3BB982"
+  },
+  {
+    "name": "Spring","category": ["backend","framework","java"],"icon": "images/icons/spring.svg","color": "#77bc1f"
+  },
+  {
+    "name": "CSS","icon": "images/icons/css3.svg","color": "#016cb4","category": ["frontend","styling"]
+  },
+  {
+    "name": "HTML","icon": "images/icons/html5.svg","color": "#e44c26","category": ["frontend"]
+  },
+  {
+    "name": "Stylus","icon": "images/icons/stylus.svg","color": "#ff6347","category": ["frontend","styling"]
+  },
+  {
+    "name": "sass","icon": "images/icons/sass.svg","color": "#CF649A","category": ["frontend","styling"]
+  },
+  {
+    "name": "Jenkins","category": ["CI/CD"],"color":"#d33833","icon":"images/icons/jenkins.svg"
+  },
+  {
+    "name": "Travis CI","category": ["CI/CD"],"color":"#cb334a","icon":"images/icons/travisci.svg"
+  },
+  {
+    "name": "TeamCity","category": ["CI/CD"],"color":"#37caff","icon":"images/icons/teamcity.svg",
+    "inverted": true
+  },
+  {
+    "name": "SonarQube","category": ["CI/CD", "testing"],"color":"#37caff","inverted":true
+  }
+]
