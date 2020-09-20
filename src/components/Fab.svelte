@@ -1,9 +1,16 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
   // name, category, icon, color
   export let details;
+
+  function click() {
+    dispatch('click');
+  }
 </script>
 
-<div class="fab" class:inverted="{!!details.inverted}" style="background-color: {details.color}">
+<div class="fab" class:inverted="{!!details.inverted}" style="background-color: {details.color}" on:click={click}>
   {#if !!details.icon}
     <img loading="lazy" src={details.icon} alt={details.name}>
   {/if}
@@ -11,8 +18,6 @@
 </div>
 
 <style>
-  /* 118px */
-  /* 138px */
   .fab {
     border-radius: 8px;
     padding: 1em;

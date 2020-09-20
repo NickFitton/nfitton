@@ -53,5 +53,19 @@
   },
   {
     "name": "SonarQube","category": ["CI/CD", "testing"],"color":"#37caff","inverted":true
-  }
+  },
+  {"name":"Kubernetes","category":["deployment"],"icon":"images/icons/kubernetes.svg","color": "#326be5"},
+  {"name":"Docker","category":["deployment"],"icon":"images/icons/docker.png","color":"#ddd","inverted":true},
+  {"name":"AWS EC2","category":["deployment"],"icon":"images/icons/awsec2.svg","color":"#f68636"},
+  {"name":"Scala","category":["language","Java"],"icon":"images/icons/scala.svg","color":"#d73122"},
+  {"name":"Elasticsearch","category":["monitoring"]},
+  {"name":"Kibana","category":["monitoring"]},
+  {"name":"Logstash","category":["monitoring"]},
+  {"name":"ITCSS","category":["architecture"]},
+  {"name":"Postgres","category":["storage", "database"]},
+  {"name":"Flyway","category":["storage", "database"]},
+  {"name":"Redis","category":["storage"]},
+  {"name":"Python","category":["language"]},
+  {"name":"Solidity","category":["language"]},
+  {"name":"Processing","category":["language"]}
 ]

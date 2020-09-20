@@ -72,7 +72,7 @@
     text-align: center;
     align-items: center;
     height: 100%;
-    padding: 1em 2em;
+    padding: 1em 10%;
     gap: 2em;
   }
 
@@ -80,8 +80,13 @@
     text-align: center;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .quick_link-container {
     display: flex;
+    flex-flow: row wrap;
     gap: 1em;
   }
 
@@ -152,9 +157,7 @@
       </a>
       <div class="card-container">
         {#each frameworks[1] as framework}
-          <div on:click={select(framework)}>
-            <Fab details="{framework}"/>
-          </div>
+          <Fab details="{framework}" class="fab" on:click={select(framework)}/>
         {/each}
       </div>
     </section>
