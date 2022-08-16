@@ -8,7 +8,8 @@
 	const navLinks: Link[] = [
 		{ path: '/', name: 'Home' },
 		{ path: '/skills', name: 'Skills' },
-		{ path: '/experience', name: 'Experience' },
+		// TODO: Add this
+		// { path: '/experience', name: 'Experience' },
 		{ path: '/about', name: 'About Me' },
 		{ path: '/website', name: 'About This Site' },
 		{ path: '/NicholasFittonCV.pdf', name: 'CV' }

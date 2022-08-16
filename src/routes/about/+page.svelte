@@ -1,10 +1,3 @@
-<script context="module">
-	import { browser, dev } from '$app/env';
-	export const hydrate = dev;
-	export const router = browser;
-	export const prerender = true;
-</script>
-
 <svelte:head>
 	<title>About Me</title>
 	<meta name="description" content="About me" />
@@ -26,6 +19,3 @@
 		help me diversify how I think of problems.
 	</p>
 </div>
-
-<style>
-</style>

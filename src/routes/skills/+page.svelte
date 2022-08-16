@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import SkillCard from '$lib/skillCard/SkillCard.svelte';
-	import { Category, technologies, type Technology } from './technology';
+	import { Category, technologies, type Technology } from './technology/index';
 
 	export const prerender = true;
 	const base: Partial<Record<Category, Technology[]>> = {};
