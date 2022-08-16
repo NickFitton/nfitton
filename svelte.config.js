@@ -8,7 +8,9 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			precompress: true
+		}),
 
 		// Override http methods in the Todo forms
 		methodOverride: {
@@ -17,7 +19,11 @@ const config = {
 		prerender: {
 			default: true
 		}
-	}
+	},
+	hosting: {
+		cleanUrls: true
+	},
+	trailingSlash: 'always'
 };
 
 export default config;
