@@ -2,8 +2,7 @@ name: Upload site changes
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   builder:
