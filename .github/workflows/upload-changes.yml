@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - uses: actions/checkout@v3
 
       - name: Install Node.js
@@ -39,13 +38,13 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Build Site
         run: pnpm build
 
-    - name: Upload Site
-      uses: wei/rclone@v1
-      env:
-        RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-      with:
-        args: copy <source>:<source_path> <dest>:<dest_path>
+      - name: Upload Site
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        with:
+          args: copy ./build devNfitton:.
