@@ -1,0 +1,1 @@
+import{_ as m}from"./_page-badce4c9.js";import{default as a}from"../components/pages/skills/_page.svelte-02727247.js";import"./index-1a171785.js";import"./SkillCard.svelte_svelte_type_style_lang-bbc3f07d.js";export{a as component,m as shared};

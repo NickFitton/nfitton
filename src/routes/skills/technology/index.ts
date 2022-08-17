@@ -109,12 +109,8 @@ export const technologies: Technology[] = [
 				startDate: EPOCHS.joinOvo,
 				endDate: EPOCHS.leaveOvo,
 				summary: [
-					'I used Gatsby to build my wedding website which you can find under "experience".'
+					'I use github actions to automate the deployment of my personal websites, including this one!.'
 				]
-			},
-			{
-				startDate: new Date('01/04/2022'),
-				summary: ['Since a team merger, I have worked on a Gatsby & Netlify CMS based project.']
 			}
 		]
 	},
