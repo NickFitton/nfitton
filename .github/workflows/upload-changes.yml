@@ -47,4 +47,4 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy ./build devNfitton:. -v
+          args: copy ./build devNfitton:. -v --size-only

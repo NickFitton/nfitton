@@ -182,7 +182,16 @@ export const technologies: Technology[] = [
 		inverted: true,
 		categories: [Category.FRONTEND, Category.TESTING],
 		color: '#25262e',
-		experience: []
+		experience: [
+			{
+				startDate: new Date('23/06/2020'),
+				endDate: EPOCHS.leavePq,
+				summary: [
+					'I introduced CyPress as a replacement E2E suite for a group of related frontend systems.',
+					'I brought a proof of concept to my manager, than higher up until it was an accepted process for testing.'
+				]
+			}
+		]
 	},
 	{
 		name: 'Svelte',
