@@ -26,9 +26,9 @@ export interface Technology {
 }
 
 const EPOCHS = {
-	joinPq: new Date('02/05/2017'),
-	leavePq: new Date('01/02/2021'),
-	joinOvo: new Date('01/02/2021'),
+	joinPq: new Date('05/02/2017'),
+	leavePq: new Date('02/01/2021'),
+	joinOvo: new Date('02/01/2021'),
 	leaveOvo: undefined
 };
 
@@ -184,7 +184,7 @@ export const technologies: Technology[] = [
 		color: '#25262e',
 		experience: [
 			{
-				startDate: new Date('23/06/2020'),
+				startDate: new Date('06/23/2020'),
 				endDate: EPOCHS.leavePq,
 				summary: [
 					'I introduced CyPress as a replacement E2E suite for a group of related frontend systems.',
