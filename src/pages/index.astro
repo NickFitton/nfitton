@@ -1,0 +1,125 @@
+---
+import { Image } from 'astro:assets';
+
+import Layout from '../layouts/Layout.astro';
+
+import { headshot } from '../assets/photos';
+import { mobile, group, office, person } from '../assets/vectors';
+import './index.css';
+import type { ImageMetadata } from 'astro';
+
+const paragraphs: {
+  content: string;
+  image: ImageMetadata;
+  imageAlt: string;
+}[] = [
+  {
+    content:
+      "I'm a Squad lead and senior software engineer at OVO Energy with a passion for creating innovative solutions in the energy industry. With over 5 years of experience, I have managed projects, built integrations, and solved complex problems using technologies such as React, React Native, Gatsby, Next.js, and more. I have a proven track record of driving results and achieving impact in my previous roles, including projects to implement push notifications, optimize app updates, and create help sections from scratch.",
+    image: mobile,
+    imageAlt: 'Graphic of a mobile',
+  },
+  {
+    content:
+      'As a mentor at OVO Energy, I enjoy sharing my knowledge and expertise with fellow team members, helping them develop their skills and achieve their career goals. I also actively mentor externally, providing guidance and support to aspiring software engineers in the broader tech community. I believe in the power of mentorship in fostering growth and empowering others to reach their full potential.',
+    image: group,
+    imageAlt: 'Graphic of a group of people',
+  },
+  {
+    content:
+      'In addition to my mentoring activities, I am an active participant in the tech community in Bristol. You can often find me attending social events, meetups, and conferences, where I connect with fellow professionals, exchange ideas, and stay updated on the latest industry trends. I am passionate about building meaningful relationships and contributing to the vibrant tech ecosystem in Bristol.',
+    image: office,
+    imageAlt: 'Graphic of an office',
+  },
+  {
+    content:
+      "In my free time, I also indulge in my love for staying active through cycling and hitting the gym, as well as exploring historic monuments and playing board games or video games with my friends. I'm constantly curious and always learning, currently exploring new technologies such as Astro.js, App Module Federation, and Next.js 13. I'm committed to pushing the boundaries of what's possible in software engineering and staying ahead of the curve.",
+    image: person,
+    imageAlt: 'Graphic of a person running to the right',
+  },
+];
+
+const contacts: { href: string; title: string }[] = [
+  { title: 'GitHub', href: 'https://github.com/NickFitton' },
+  { title: 'LinkedIn', href: 'https://www.linkedin.com/in/nicholas-fitton' },
+  {
+    title: 'Email',
+    href: 'mailto:website@nfitton.com?subject=Mail from your site',
+  },
+];
+---
+
+<Layout title="Nick Fitton">
+  <main>
+    <header>
+      <Image
+        class="headshot"
+        src={headshot}
+        width="200"
+        height="200"
+        alt="Headshot of Nick Fitton"
+      />
+      <div>
+        <h1>Hey! I'm Nick, a senior software engineer based in South Wales.</h1>
+        <p>I lead the Frontend Platforms squad at OVO Energy</p>
+      </div>
+    </header>
+    <section class="bio">
+      <h2>Bio</h2>
+      {
+        paragraphs.map(({ content, image, imageAlt }, i) => (
+          <div class={`media_p ${i % 2 === 0 ? 'reversed' : ''}`}>
+            <div class="layeredImage">
+              <Image
+                src={image}
+                width="200"
+                height="200"
+                alt={imageAlt}
+                class="layer3"
+              />
+              <Image
+                src={image}
+                width="200"
+                height="200"
+                alt={imageAlt}
+                class="layer2"
+              />
+              <Image
+                src={image}
+                width="200"
+                height="200"
+                alt={imageAlt}
+                class="layer1"
+              />
+            </div>
+            <p>{content}</p>
+          </div>
+        ))
+      }
+      <p>
+        With a blend of technical expertise, mentoring experience, and active
+        involvement in the tech community, I'm dedicated to making a positive
+        impact in the industry. Let's connect, collaborate, and make a
+        difference together!
+      </p>
+    </section>
+    <section class="contact">
+      <h2>Get in touch</h2>
+      <p>
+        If you're interested in working with me or have any questions, feel free
+        to contact me on any of the platforms below.
+      </p>
+      <ul>
+        {
+          contacts.map(({ href, title }) => (
+            <li>
+              <a href={href}>
+                <span>{title}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,107 @@
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 4rem;
+  gap: 2rem;
+  background: var(--canvas);
+  border-bottom: 0.5rem solid var(--primary);
+
+  .headshot {
+    border-radius: 1rem;
+  }
+
+  h1 {
+    color: var(--secondary);
+    font-size: 2rem;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+}
+
+section {
+  margin: 2rem;
+
+  &.bio {
+    --rotate: 358deg;
+    --rotateX: 23deg;
+    --rotateY: 32deg;
+    --perspective: 700px;
+
+    div.media_p {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      p {
+        margin: 0;
+        text-align: justify;
+      }
+
+      .layeredImage {
+        display: grid;
+      }
+      img {
+        transform: rotate(var(--rotate)) rotateX(var(--rotateX))
+          rotateY(var(--rotateY)) perspective(700px);
+        grid-column: 1;
+        grid-row: 1;
+        &.layer2 {
+          transform: rotate(var(--rotate)) rotateX(var(--rotateX))
+            rotateY(var(--rotateY)) perspective(700px) translateZ(-10px);
+          opacity: 75%;
+        }
+        &.layer3 {
+          transform: rotate(var(--rotate)) rotateX(var(--rotateX))
+            rotateY(var(--rotateY)) perspective(700px) translateZ(-20px);
+          opacity: 50%;
+        }
+      }
+
+      &.reversed {
+        flex-direction: row-reverse;
+        img {
+          --rotate: 2deg;
+          --rotateX: 23deg;
+          --rotateY: 328deg;
+          --perspective: 700px;
+        }
+      }
+    }
+  }
+
+  &.contact {
+    ul {
+      list-style: none;
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
+      gap: 1rem;
+      padding: unset;
+      margin: unset;
+
+      li {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      span {
+        display: block;
+        color: var(--secondary);
+        background: var(--primary);
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+    }
+  }
+}
