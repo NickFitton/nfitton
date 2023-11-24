@@ -19,6 +19,21 @@ header {
     margin: 0;
     font-size: 1.5rem;
   }
+
+  @media only screen and (max-width: 992px) {
+    flex-direction: column;
+
+    .headshot {
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
 }
 
 section {
@@ -67,6 +82,22 @@ section {
           --rotateX: 23deg;
           --rotateY: 328deg;
           --perspective: 700px;
+        }
+      }
+
+      @media only screen and (max-width: 992px) {
+        flex-direction: column;
+
+        &.reversed {
+          flex-direction: column;
+        }
+
+        img {
+          height: 100px;
+        }
+
+        .layeredImage {
+          padding-bottom: 0.5rem;
         }
       }
     }
