@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RecipeList from '../../components/RecipeList.astro';
+import CourseLink from '../../components/CourseLink.astro';
+import './christmas.css';
+import { recipes } from './content';
+---
+
+<Layout title="Christmas Menu">
+  <div class="content">
+    <header>
+      <CourseLink course="starter">Starter</CourseLink>
+      <p>
+        <a href="#soup">Chestnut & Panchetta Soup</a> with <a href="#bread">
+          Sage & Parmesan Bread
+        </a>.
+      </p>
+      <CourseLink course="main">Main</CourseLink>
+      <p>
+        <a href="#ham">Cola Ham</a> & <a href="#goose">Goose</a> with <a
+          href="#potato">roast potatoes</a
+        >, <a href="#roots">veg</a>, <a href="#stuffing">stuffing</a>, <a
+          href="#pigs">pigs in blankets</a
+        >, <a href="#sprouts">brussel sprouts and chestnuts</a>.
+      </p>
+      <CourseLink course="dessert">Dessert</CourseLink>
+      <p>
+        <a href="#christmas">Christmas Pudding</a> with flaming brandy or <a
+          href="#toffee">Sticky Toffee pudding</a
+        >, served with brandy cream.
+      </p>
+    </header>
+    <RecipeList course="Starter" anchor="starter" recipes={recipes.starter} />
+    <RecipeList course="Main" anchor="main" recipes={recipes.main} />
+    <RecipeList course="Dessert" anchor="dessert" recipes={recipes.dessert} />
+  </div>
+</Layout>
