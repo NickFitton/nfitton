@@ -19,3 +19,12 @@ export const experience = [
     ],
   },
 ];
+
+export const blog = [
+  {
+    name: 'Why you hate Detox',
+    date: '2023-12-09',
+    summary:
+      'Is your CI taking hours to resolve? Is your test suite as flakey as a croissant? Do you hate writing them altogther? You might find this post of interest.',
+  },
+];

@@ -40,6 +40,11 @@ section.info {
   gap: 0.5rem;
   p {
     margin: 0;
+
+    a {
+      font-weight: 400;
+      color: #ebebeb;
+    }
   }
   .left {
     h4 {

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import './new.css';
-import { experience } from './content';
+import { blog, experience } from './content';
 ---
 
 <Layout title="Nick Fitton">
@@ -48,13 +48,67 @@ import { experience } from './content';
       </div>
       <div class="card skills">
         <h3>Skills</h3>
-        <div></div>
-      </div>
-      <div class="card projects">
-        <h3>Projects</h3>
+        <div>
+          <div class="experience">
+            <div class="left">
+              <h4>Engineering Management</h4>
+            </div>
+            <div class="right">
+              <p>
+                In my tenure at OVO Energy, I undertook the role of a SEM for a
+                quarter, leading a compact team of four developers, including
+                myself. My responsibilities extended beyond project management
+                to encompass effective inter-team communication and maintaining
+                my contributions as an Engineer.
+              </p>
+              <p>
+                During this period, we delivered key projects, including the
+                development and launch of a new app for support teams, a
+                successful study to simplify a project by removing Redux, and
+                the implementation of a new screen view type across various
+                project journeys, which was well-received by customers and
+                developers.
+              </p>
+            </div>
+          </div>
+          <div class="experience">
+            <div class="left">
+              <h4>Software Engineering</h4>
+            </div>
+            <div class="right">
+              <p>
+                I am passionate about developing tooling that empowers other
+                developers to achieve remarkable results efficiently. A recent
+                focus of mine has been optimizing Detox test runs on CI
+                machines. Previously, these tests took over 90 minutes and were
+                prone to failure due to flakey tests and a challenging developer
+                experience (DX) stemming from team inexperience.
+              </p>
+              <p>
+                Addressing these issues was an engaging and rewarding journey.
+                It led me to insights and solutions that I've shared in <a
+                  href="/blogs/why-you-hate-detox">this post</a
+                >, detailing the process and improvements made.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="card blog">
         <h3>Blog</h3>
+        {
+          blog.map(({ name, date, summary }) => (
+            <div class="experience">
+              <div class="left">
+                <h4>{name}</h4>
+                <p>{date}</p>
+              </div>
+              <div class="right">
+                <p>{summary}</p>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </section>
   </div>

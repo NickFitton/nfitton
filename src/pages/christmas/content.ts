@@ -72,7 +72,9 @@ export const recipes = {
       ],
     },
     beef: {
-      name: 'Roast Beef',
+      name: 'Roast Beef with Caramelised Onion Gravy',
+      credit:
+        'https://www.gordonramsay.com/gr/recipes/roast-beef-with-caramelised-onion-gravy/',
       ingredients: [
         '1 head of garlic (about 12 cloves), cut in half',
         '5 thyme sprigs, leaves picked, plus 1 extra',
