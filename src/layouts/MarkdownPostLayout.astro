@@ -1,0 +1,24 @@
+---
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title.toString()}>
+  <div class="content">
+    <h1>{frontmatter.title.toString()}</h1>
+    <p>{frontmatter.description.toString()}</p>
+    <slot />
+  </div>
+</Layout>
+
+<style>
+  .content {
+    margin: 4rem auto;
+    max-width: 1600px;
+  }
+  @media only screen and (max-width: calc(1600px)) {
+    .content {
+      margin: 4rem 5vw;
+    }
+  }
+</style>

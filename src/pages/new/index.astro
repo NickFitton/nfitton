@@ -1,7 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import './new.css';
-import { blog, experience } from './content';
+import { experience } from './content';
+import { getCollection } from 'astro:content';
+const allSkills = await getCollection('skills');
+const buildTags = (body: string) =>
+  body
+    .split('\n')
+    .filter((line) => line.startsWith('## '))
+    .map((line) => line.replace('## ', ''))
+    .map((tag) => ({
+      tag,
+      id: tag.toLowerCase().replaceAll(' ', '-').replaceAll('.', ''),
+    }));
 ---
 
 <Layout title="Nick Fitton">
@@ -26,17 +37,17 @@ import { blog, experience } from './content';
       </div>
     </header>
     <section class="info">
-      <div class="card">
+      <div>
         <h3>Experience</h3>
         {
-          experience.map(({ company, from, to, content }) => (
-            <div class="experience">
-              <div class="left">
+          experience.map(({ company, link, from, to, content }) => (
+            <div class="headed-section">
+              <a class="left" href={link} target="_blank">
                 <h4>{company}</h4>
                 <p>
                   {from} - {to}
                 </p>
-              </div>
+              </a>
               <div class="right">
                 {content.map((paragraph) => (
                   <p>{paragraph}</p>
@@ -46,10 +57,10 @@ import { blog, experience } from './content';
           ))
         }
       </div>
-      <div class="card skills">
-        <h3>Skills</h3>
+      <div>
+        <h3>Expertise</h3>
         <div>
-          <div class="experience">
+          <div class="headed-section">
             <div class="left">
               <h4>Engineering Management</h4>
             </div>
@@ -71,7 +82,7 @@ import { blog, experience } from './content';
               </p>
             </div>
           </div>
-          <div class="experience">
+          <div class="headed-section">
             <div class="left">
               <h4>Software Engineering</h4>
             </div>
@@ -85,26 +96,53 @@ import { blog, experience } from './content';
                 experience (DX) stemming from team inexperience.
               </p>
               <p>
-                Addressing these issues was an engaging and rewarding journey.
-                It led me to insights and solutions that I've shared in <a
-                  href="/blogs/why-you-hate-detox">this post</a
-                >, detailing the process and improvements made.
+                Addressing these issues was an engaging and rewarding journey. I
+                led the investigation and concluded with an e2e test suite that
+                didn't reduce coverage, reduced test time and test flake.
+              </p>
+            </div>
+          </div>
+          <div class="headed-section">
+            <div class="left">
+              <h4>Mentoring</h4>
+            </div>
+            <div class="right">
+              <p>
+                As a mentor at OVO Energy, I enjoy sharing my knowledge and
+                expertise with fellow team members, helping them develop their
+                skills and achieve their career goals. I also actively mentor
+                externally, providing guidance and support to aspiring software
+                engineers in the broader tech community. I believe in the power
+                of mentorship in fostering growth and empowering others to reach
+                their full potential.
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="card blog">
-        <h3>Blog</h3>
+      <div>
+        <h3>Skills</h3>
+        <p>
+          An arbitrary list of languages and framesworks I've worked with,
+          because everyone seems to do it and I don't want to miss out!
+        </p>
         {
-          blog.map(({ name, date, summary }) => (
-            <div class="experience">
-              <div class="left">
-                <h4>{name}</h4>
-                <p>{date}</p>
+          allSkills.map((skill) => (
+            <div class="skill">
+              <div class="skill-content">
+                <a class="left" href={`/skills/${skill.slug}`}>
+                  <h4>{skill.data.title}</h4>
+                </a>
+                <div class="right">
+                  <p>{skill.data.description}</p>
+                </div>
               </div>
-              <div class="right">
-                <p>{summary}</p>
+              <div class="skill-tags">
+                {buildTags(skill.body).map(({ id, tag }) => (
+                  <a class="skill-tag" href={`/skills/${skill.slug}#${id}`}>
+                    {tag}
+                  </a>
+                ))}
               </div>
             </div>
           ))

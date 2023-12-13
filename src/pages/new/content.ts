@@ -1,6 +1,7 @@
 export const experience = [
   {
     company: 'OVO Energy',
+    link: 'https://ovo.com',
     from: '2021',
     to: 'present',
     content: [
@@ -11,6 +12,7 @@ export const experience = [
   },
   {
     company: 'Post-Quantum',
+    link: 'https://post-quantum.com',
     from: '2017',
     to: '2021',
     content: [
@@ -24,7 +26,21 @@ export const blog = [
   {
     name: 'Why you hate Detox',
     date: '2023-12-09',
+    path: 'why-you-hate-detox',
     summary:
       'Is your CI taking hours to resolve? Is your test suite as flakey as a croissant? Do you hate writing them altogther? You might find this post of interest.',
+  },
+];
+
+export const skillCategories = [
+  {
+    name: 'Frontend Frameworks',
+    description:
+      'Over the years I have worked with and played with a range of different frameworks to help build a general understanding of the ecosystem and what tools are best for which jobs.',
+    skills: [
+      {
+        name: 'React Native',
+      },
+    ],
   },
 ];
