@@ -10,9 +10,14 @@ h1 {
   font-size: 2rem;
 }
 
+.gantt-chart,
 header {
   padding-bottom: 2rem;
+  margin-bottom: 2rem;
   border-bottom: solid 2px var(--primary);
+}
+
+header {
   p {
     font-weight: 300;
     color: #aeaeae;

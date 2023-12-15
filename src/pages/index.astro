@@ -1,125 +1,173 @@
 ---
-import { Image } from 'astro:assets';
-
 import Layout from '../layouts/Layout.astro';
-
-import { headshot } from '../assets/photos';
-import { mobile, group, office, person } from '../assets/vectors';
-import './Page.css';
-import type { ImageMetadata } from 'astro';
-
-const paragraphs: {
-  content: string;
-  image: ImageMetadata;
-  imageAlt: string;
-}[] = [
-  {
-    content:
-      "I'm a Squad lead and senior software engineer at OVO Energy with a passion for creating innovative solutions in the energy industry. With over 5 years of experience, I have managed projects, built integrations, and solved complex problems using technologies such as React, React Native, Gatsby, Next.js, and more. I have a proven track record of driving results and achieving impact in my previous roles, including projects to implement push notifications, optimize app updates, and create help sections from scratch.",
-    image: mobile,
-    imageAlt: 'Graphic of a mobile',
-  },
-  {
-    content:
-      'As a mentor at OVO Energy, I enjoy sharing my knowledge and expertise with fellow team members, helping them develop their skills and achieve their career goals. I also actively mentor externally, providing guidance and support to aspiring software engineers in the broader tech community. I believe in the power of mentorship in fostering growth and empowering others to reach their full potential.',
-    image: group,
-    imageAlt: 'Graphic of a group of people',
-  },
-  {
-    content:
-      'In addition to my mentoring activities, I am an active participant in the tech community in Bristol. You can often find me attending social events, meetups, and conferences, where I connect with fellow professionals, exchange ideas, and stay updated on the latest industry trends. I am passionate about building meaningful relationships and contributing to the vibrant tech ecosystem in Bristol.',
-    image: office,
-    imageAlt: 'Graphic of an office',
-  },
-  {
-    content:
-      "In my free time, I also indulge in my love for staying active through cycling and hitting the gym, as well as exploring historic monuments and playing board games or video games with my friends. I'm constantly curious and always learning, currently exploring new technologies such as Astro.js, App Module Federation, and Next.js 13. I'm committed to pushing the boundaries of what's possible in software engineering and staying ahead of the curve.",
-    image: person,
-    imageAlt: 'Graphic of a person running to the right',
-  },
-];
-
-const contacts: { href: string; title: string }[] = [
-  { title: 'GitHub', href: 'https://github.com/NickFitton' },
-  { title: 'LinkedIn', href: 'https://www.linkedin.com/in/nicholas-fitton' },
-  {
-    title: 'Email',
-    href: 'mailto:website@nfitton.com?subject=Mail from your site',
-  },
-];
+import './new.css';
+import { experience } from './content';
+import { getCollection } from 'astro:content';
+const allSkills = await getCollection('skills');
+const buildTags = (body: string) =>
+  body
+    .split('\n')
+    .filter((line) => line.startsWith('## '))
+    .map((line) => line.replace('## ', ''))
+    .map((tag) => ({
+      tag,
+      id: tag.toLowerCase().replaceAll(' ', '-').replaceAll('.', ''),
+    }));
 ---
 
 <Layout title="Nick Fitton">
-  <main>
+  <div class="content">
     <header>
-      <Image
-        class="headshot"
-        src={headshot}
-        width="200"
-        height="200"
-        alt="Headshot of Nick Fitton"
-      />
-      <div>
-        <h1>Hey! I'm Nick, a senior software engineer based in South Wales.</h1>
-        <p>I lead the Frontend Platforms squad at OVO Energy</p>
+      <div class="title">
+        <h1>Nicholas Fitton</h1>
+        <h2>Senior fullstack engineer</h2>
+        <p>Working in the Frontend Platforms squad @ OVO Energy</p>
+      </div>
+      <div class="about">
+        <p>
+          I'm a Squad lead and senior software engineer at OVO Energy with a
+          passion for creating innovative solutions in the energy industry. With
+          over 5 years of experience, I have managed projects, built
+          integrations, and solved complex problems using technologies such as
+          React, React Native, Gatsby, Next.js, and more. I have a proven track
+          record of driving results and achieving impact in my previous roles,
+          including projects to implement push notifications, optimize app
+          updates, and create help sections from scratch.
+        </p>
       </div>
     </header>
-    <section class="bio">
-      <h2>Bio</h2>
-      {
-        paragraphs.map(({ content, image, imageAlt }, i) => (
-          <div class={`media_p ${i % 2 === 0 ? 'reversed' : ''}`}>
-            <div class="layeredImage">
-              <Image
-                src={image}
-                width="200"
-                height="200"
-                alt={imageAlt}
-                class="layer3"
-              />
-              <Image
-                src={image}
-                width="200"
-                height="200"
-                alt={imageAlt}
-                class="layer2"
-              />
-              <Image
-                src={image}
-                width="200"
-                height="200"
-                alt={imageAlt}
-                class="layer1"
-              />
+    <section class="info">
+      <div class="left-column">
+        <div>
+          <h3>Experience</h3>
+          {
+            experience.map(({ company, link, from, to, content }) => (
+              <div class="headed-section">
+                <a class="left" href={link} target="_blank">
+                  <h4>{company}</h4>
+                  <p>
+                    {from} - {to}
+                  </p>
+                </a>
+                <div class="right">
+                  {content.map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div>
+          <h3>Skills</h3>
+          <p>
+            An arbitrary list of languages and framesworks I've worked with,
+            because everyone seems to do it and I don't want to miss out!
+          </p>
+          {
+            allSkills.map((skill) => (
+              <div class="skill">
+                <div class="skill-content">
+                  <a class="left" href={`/skills/${skill.slug}`}>
+                    <h4>{skill.data.title}</h4>
+                  </a>
+                  <div class="right">
+                    <p>{skill.data.description}</p>
+                  </div>
+                </div>
+                <div class="skill-tags">
+                  {buildTags(skill.body).map(({ id, tag }) => (
+                    <a class="skill-tag" href={`/skills/${skill.slug}#${id}`}>
+                      {tag}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="right-column">
+        <div>
+          <h3>Expertise</h3>
+          <div>
+            <div class="headed-section">
+              <div class="left">
+                <h4>Engineering Management</h4>
+              </div>
+              <div class="right">
+                <p>
+                  In my tenure at OVO Energy, I undertook the role of a SEM for
+                  a quarter, leading a compact team of four developers,
+                  including myself. My responsibilities extended beyond project
+                  management to encompass effective inter-team communication and
+                  maintaining my contributions as an Engineer.
+                </p>
+                <p>
+                  During this period, we delivered key projects, including the
+                  development and launch of a new app for support teams, a
+                  successful study to simplify a project by removing Redux, and
+                  the implementation of a new screen view type across various
+                  project journeys, which was well-received by customers and
+                  developers.
+                </p>
+              </div>
             </div>
-            <p>{content}</p>
+            <div class="headed-section">
+              <div class="left">
+                <h4>Software Engineering</h4>
+              </div>
+              <div class="right">
+                <p>
+                  I am passionate about developing tooling that empowers other
+                  developers to achieve remarkable results efficiently. A recent
+                  focus of mine has been optimizing Detox test runs on CI
+                  machines. Previously, these tests took over 90 minutes and
+                  were prone to failure due to flakey tests and a challenging
+                  developer experience (DX) stemming from team inexperience.
+                </p>
+                <p>
+                  Addressing these issues was an engaging and rewarding journey.
+                  I led the investigation and concluded with an e2e test suite
+                  that didn't reduce coverage, reduced test time and test flake.
+                </p>
+              </div>
+            </div>
+            <div class="headed-section">
+              <div class="left">
+                <h4>Mentoring</h4>
+              </div>
+              <div class="right">
+                <p>
+                  As a mentor at OVO Energy, I enjoy sharing my knowledge and
+                  expertise with fellow team members, helping them develop their
+                  skills and achieve their career goals. I also actively mentor
+                  externally, providing guidance and support to aspiring
+                  software engineers in the broader tech community. I believe in
+                  the power of mentorship in fostering growth and empowering
+                  others to reach their full potential.
+                </p>
+              </div>
+            </div>
+            <div class="headed-section">
+              <div class="left">
+                <h4>Cooking</h4>
+              </div>
+              <div class="right">
+                <p>
+                  In my off time, I love to cook, whether it be an intricate
+                  meal for two or a large dinner for many. I find my development
+                  experience helps me manage the multitasking of cooking a large
+                  meal, for example, I recently cooked christmas dinner for 7
+                  and you can find my process for managing it <a
+                    href="/christmas">here</a
+                  >.
+                </p>
+              </div>
+            </div>
           </div>
-        ))
-      }
-      <p>
-        With a blend of technical expertise, mentoring experience, and active
-        involvement in the tech community, I'm dedicated to making a positive
-        impact in the industry. Let's connect, collaborate, and make a
-        difference together!
-      </p>
+        </div>
+      </div>
     </section>
-    <section class="contact">
-      <h2>Get in touch</h2>
-      <p>
-        If you're interested in working with me or have any questions, feel free
-        to contact me on any of the platforms below.
-      </p>
-      <ul>
-        {
-          contacts.map(({ href, title }) => (
-            <li>
-              <a href={href}>
-                <span>{title}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-  </main>
+  </div>
 </Layout>
