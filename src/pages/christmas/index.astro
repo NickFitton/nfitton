@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import RecipeList from '../../components/RecipeList.astro';
 import CourseLink from '../../components/CourseLink.astro';
+import Gantt from '../../components/ChristmasGantt/Gantt.astro';
 import './christmas.css';
 import { recipes } from './content';
 ---
@@ -37,6 +38,7 @@ import { recipes } from './content';
         chart, to track progress and ensure everything is done in a timely
         manner.
       </p>
+      <Gantt />
     </div>
     <RecipeList course="Starter" anchor="starter" recipes={recipes.starter} />
     <RecipeList course="Main" anchor="main" recipes={recipes.main} />

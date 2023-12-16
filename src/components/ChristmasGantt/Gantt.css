@@ -1,0 +1,10 @@
+text {
+  fill: var(--secondary);
+}
+
+#eveTimeline {
+  height: 500px;
+}
+#dayTimeline {
+  height: 500px;
+}
