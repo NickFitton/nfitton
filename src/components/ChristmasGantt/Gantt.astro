@@ -1,7 +1,7 @@
 ---
 import { complexRecipes } from '../../pages/christmas/content.ts';
 import { type Task, buildTasksFromRecipes } from './logic.ts';
-import './gantt.css';
+import './Gantt.css';
 
 const { eve, day } = buildTasksFromRecipes(complexRecipes);
 ---
@@ -20,12 +20,14 @@ const { eve, day } = buildTasksFromRecipes(complexRecipes);
     var eveDataTable = new google.visualization.DataTable();
     eveDataTable.addColumn({ type: 'string', id: 'Room' });
     eveDataTable.addColumn({ type: 'string', id: 'Name' });
+    eveDataTable.addColumn({ type: 'string', id: 'style', role: 'style' });
     eveDataTable.addColumn({ type: 'date', id: 'Start' });
     eveDataTable.addColumn({ type: 'date', id: 'End' });
     eveDataTable.addRows([
-      ...eve.map(({ group, name, startDate, endDate }) => [
+      ...eve.map(({ group, name, color, startDate, endDate }) => [
         group,
         name,
+        color,
         new Date(startDate),
         new Date(endDate),
       ]),
@@ -45,12 +47,14 @@ const { eve, day } = buildTasksFromRecipes(complexRecipes);
     var dayDataTable = new google.visualization.DataTable();
     dayDataTable.addColumn({ type: 'string', id: 'Room' });
     dayDataTable.addColumn({ type: 'string', id: 'Name' });
+    dayDataTable.addColumn({ type: 'string', id: 'style', role: 'style' });
     dayDataTable.addColumn({ type: 'date', id: 'Start' });
     dayDataTable.addColumn({ type: 'date', id: 'End' });
     dayDataTable.addRows([
-      ...day.map(({ group, name, startDate, endDate }) => [
+      ...day.map(({ group, name, color, startDate, endDate }) => [
         group,
         name,
+        color,
         new Date(startDate),
         new Date(endDate),
       ]),

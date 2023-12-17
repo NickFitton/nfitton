@@ -3,6 +3,7 @@ import type { Recipe, Recipes, Step } from '../../pages/christmas/content';
 export type Task = {
   group: string;
   name: string;
+  color: string;
   startDate: Date;
   endDate: Date;
 };
@@ -40,6 +41,37 @@ const determineDateRange = (
   return { startDate, endDate };
 };
 
+const determineTaskColor = (uses: Step['uses']): string => {
+  switch (uses) {
+    case 'hob-pot':
+      return '#7851A9';
+    case 'hob-pan':
+      return '#614051';
+    case 'oven':
+      return '#483D8B';
+    case 'worktop':
+      return '#4D0030';
+    case 'chopping board':
+      return '#9966CC';
+    case 'blender':
+      return '#702963';
+    case 'fridge':
+      return '#9400D3';
+    case 'microwave':
+      return '#4B0082';
+    case 'slow-cooker':
+      return '#8E4585';
+    case 'air-fryer':
+      return '#8A2BE2';
+    case 'kettle':
+      return '#800080';
+    case 'serving-tray':
+      return '#FFF0F5';
+    default:
+      return '#fff';
+  }
+};
+
 export const buildTasksFromRecipes = (recipes: Recipes): GroupedTasks => {
   const taggedRecipes = Object.values(recipes)
     .flatMap(Object.entries)
@@ -49,7 +81,8 @@ export const buildTasksFromRecipes = (recipes: Recipes): GroupedTasks => {
     const tasks: Task[] = [];
     method.map((step) => {
       const dateRange = determineDateRange(step, tasks);
-      tasks.push({ ...dateRange, group: recipeName, name: step.name });
+      const color = determineTaskColor(step.uses);
+      tasks.push({ ...dateRange, group: recipeName, color, name: step.name });
     });
     return tasks;
   });
