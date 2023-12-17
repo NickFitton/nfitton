@@ -1,8 +1,4 @@
-import type {
-  Recipe,
-  Recipes,
-  Step,
-} from '../../pages/cooking/christmas/content';
+import type { Recipe, Recipes, Step } from './content';
 
 export type Task = {
   group: string;
@@ -181,19 +177,8 @@ export const buildTasksFromRecipes = (recipes: Recipes): GroupedTasks => {
     .flatMap(Object.entries)
     .map(([tag, recipe]) => ({ ...recipe, tag }) as Recipe & { tag: string });
 
-  const dependentTasks = buildDependentTasks(taggedRecipes);
-
-  // const recipeTasks = taggedRecipes.flatMap(({ name: recipeName, method }) => {
-  //   const tasks: Task[] = [];
-  //   method.map((step) => {
-  //     const dateRange = determineDateRange(step, tasks);
-  //     const color = determineTaskColor(step.uses);
-  //     tasks.push({ ...dateRange, group: recipeName, color, name: step.name });
-  //   });
-  //   return tasks;
-  // });
-
-  return dependentTasks.reduce(
+  // I wish groupBy worked.
+  return buildDependentTasks(taggedRecipes).reduce(
     (groups, task) => {
       if (task.startDate.getTime() > christmasDay.getTime()) {
         return { eve: groups.eve, day: [...groups.day, task] };

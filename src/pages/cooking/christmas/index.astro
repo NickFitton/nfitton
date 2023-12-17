@@ -2,9 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import RecipeList from '../../../components/RecipeList.astro';
 import CourseLink from '../../../components/CourseLink.astro';
-import Gantt from '../../../components/ChristmasGantt/Gantt.astro';
+import Gantt from '../../../components/Gantt/index.astro';
 import './christmas.css';
 import { complexRecipes } from './content';
+import { buildTasksFromRecipes } from './logic';
+
+const { eve, day } = buildTasksFromRecipes(complexRecipes);
 ---
 
 <Layout title="Christmas Menu">
@@ -38,7 +41,8 @@ import { complexRecipes } from './content';
         chart, to track progress and ensure everything is done in a timely
         manner.
       </p>
-      <Gantt />
+      <Gantt id="EveningTimeline" tasks={eve} height="400px" />
+      <Gantt id="DayTimeline" tasks={day} height="500px" />
     </div>
     <RecipeList
       course="Starter"
