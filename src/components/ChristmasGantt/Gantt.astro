@@ -1,6 +1,6 @@
 ---
-import { complexRecipes } from '../../pages/christmas/content.ts';
-import { type Task, buildTasksFromRecipes } from './logic.ts';
+import { complexRecipes } from '../../pages/cooking/christmas/content.ts';
+import { buildTasksFromRecipes } from './logic.ts';
 import './Gantt.css';
 
 const { eve, day } = buildTasksFromRecipes(complexRecipes);
@@ -63,3 +63,4 @@ const { eve, day } = buildTasksFromRecipes(complexRecipes);
     dayChart.draw(dayDataTable, options);
   }
 </script>
+ ../../pages/cooking/christmas/content.ts

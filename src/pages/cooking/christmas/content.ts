@@ -2,13 +2,13 @@
  * TODO:
  * colored tasks: Assign uses to to steps and color the tasks to help identify where foods need to be at a given time, e.g. serving-tray should be a dark pastel brown, hob should be a dark red.
  * Make christmas.astro use complex recipes over og recipes to make it easier to manage the work to do.
+ * Move /christmas/index.astro to cooking/christmas/index.astro.
  *
  *
  * global dependsOn: Allow tasks in dishes to depend on other dishes tasks, e.g. roast veg depends on cooking goose.
  * multi dependsOn: Allow tasks to depend on multiple other tasks, e.g. resting veg depends on potato and roots cooking.
  * Split turning and cooking into different tasks to help identify action vs inaction, e.g. potato turning shouldn't take 15 minutes, but the cooking should.
  * Display times in christmas/index.astro.
- * Move /christmas/index.astro to cooking/christmas/index.astro.
  * Move Gantt to /cooking/christmas/timeline/index.astro and create a list timeline of tasks to do.
  */
 
