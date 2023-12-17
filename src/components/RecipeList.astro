@@ -1,5 +1,5 @@
 ---
-import { type Recipe } from '../types';
+import { type Recipe } from '../pages/christmas/content.ts';
 interface Props {
   course: string;
   anchor: string;
@@ -28,7 +28,7 @@ const { course, anchor, recipes } = Astro.props;
             <h3>Method</h3>
             <ol>
               {recipe.method.map((step) => (
-                <li>{step}</li>
+                <li>{step.step}</li>
               ))}
             </ol>
           </div>

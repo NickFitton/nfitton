@@ -4,7 +4,7 @@ import RecipeList from '../../components/RecipeList.astro';
 import CourseLink from '../../components/CourseLink.astro';
 import Gantt from '../../components/ChristmasGantt/Gantt.astro';
 import './christmas.css';
-import { recipes } from './content';
+import { complexRecipes } from './content';
 ---
 
 <Layout title="Christmas Menu">
@@ -40,8 +40,16 @@ import { recipes } from './content';
       </p>
       <Gantt />
     </div>
-    <RecipeList course="Starter" anchor="starter" recipes={recipes.starter} />
-    <RecipeList course="Main" anchor="main" recipes={recipes.main} />
-    <RecipeList course="Dessert" anchor="dessert" recipes={recipes.dessert} />
+    <RecipeList
+      course="Starter"
+      anchor="starter"
+      recipes={complexRecipes.starter}
+    />
+    <RecipeList course="Main" anchor="main" recipes={complexRecipes.main} />
+    <RecipeList
+      course="Dessert"
+      anchor="dessert"
+      recipes={complexRecipes.dessert}
+    />
   </div>
 </Layout>
