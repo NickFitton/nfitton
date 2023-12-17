@@ -3,9 +3,9 @@
  * colored tasks: Assign uses to to steps and color the tasks to help identify where foods need to be at a given time, e.g. serving-tray should be a dark pastel brown, hob should be a dark red.
  * Make christmas.astro use complex recipes over og recipes to make it easier to manage the work to do.
  * Move /christmas/index.astro to cooking/christmas/index.astro.
- *
- *
  * global dependsOn: Allow tasks in dishes to depend on other dishes tasks, e.g. roast veg depends on cooking goose.
+ *
+ *
  * multi dependsOn: Allow tasks to depend on multiple other tasks, e.g. resting veg depends on potato and roots cooking.
  * Split turning and cooking into different tasks to help identify action vs inaction, e.g. potato turning shouldn't take 15 minutes, but the cooking should.
  * Display times in christmas/index.astro.
@@ -73,7 +73,7 @@ export const complexRecipes: Recipes = {
       method: [
         {
           name: 'Fry Panchetta',
-          startTime: christmasEve,
+          dependsOn: 'sprouts.Store',
           durationMins: 10,
           uses: 'hob-pot',
           step: 'In a large saucepan over medium heat, cook panchetta until rendered and crisp, 10 minutes. Transfer bacon to a paper towel-lined plate and set aside to cool.',
@@ -231,6 +231,7 @@ export const complexRecipes: Recipes = {
         {
           name: 'Prep bird',
           startTime: christmasEve,
+          // dependsOn: 'soup.Store',
           uses: 'chopping board',
           step: 'Check the inside of the bird and remove any giblets or pads of fat. Using the tip of a sharp knife, lightly score the breast and leg skin in a criss-cross. This helps the fat to render down more quickly during roasting.',
           durationMins: 5,
@@ -321,63 +322,29 @@ export const complexRecipes: Recipes = {
         },
       ],
     },
-    veg: {
-      name: 'Roast Potato, carrots and Parsnips',
+    potato: {
+      name: 'Duck fat roast potatoes',
       ingredients: [
         '14 Maris Piper Potatoes peeled and cut to serving size',
-        '4 Large Carrots, peeled but not topped and tailed',
-        '4 Large Parsnips, peeled but not topped and tailed',
-        '2 cloves garlic heads cut off',
-        '1 bag of fresh thyme, roughly chopped',
-        '1 bag of fresh rosemary, roughly chopped',
-        'handful of peppercorns',
         'Leftover Goose Fat',
         'Ground pepper',
         'Ground salt',
-        'Runny honey',
       ],
       method: [
         {
-          name: 'Season goose fat',
-          startTime: christmasEve,
-          uses: 'hob-pan',
-          step: 'Infuse goose fat with the garlic, thyme and rosemarie. Frying until fragrant.',
-          durationMins: 10,
-        },
-        {
           name: 'Boil potatoes',
-          startTime: christmasEve,
+          dependsOn: 'pigs.Store',
           uses: 'hob-pot',
           step: 'Cover the potatoes in cold water, bring to boil and cook for 10 minutes, until a knife cleanly goes through it.',
           durationMins: 20,
         },
-        {
-          name: 'Boil roots',
-          startTime: christmasEve,
-          uses: 'hob-pot',
-          step: 'Cover the the carrots and parsnips in cold water then bring to boil and cook for 10 minutes.',
-          durationMins: 20,
-        },
+
         {
           name: 'Cool potatoes',
           dependsOn: 'Boil potatoes',
           uses: 'worktop',
           step: 'Strain and toss the potatoes, then leave to cool in a large pan.',
           durationMins: 10,
-        },
-        {
-          name: 'Cool roots',
-          dependsOn: 'Cool potatoes',
-          uses: 'worktop',
-          step: 'Strain the roots, leaving them in the strainer',
-          durationMins: 10,
-        },
-        {
-          name: 'Prep',
-          dependsOn: 'Cool roots',
-          durationMins: 5,
-          uses: 'chopping board',
-          step: 'Top and tail and quarter the veg.',
         },
         {
           name: 'Season the potatoes',
@@ -387,17 +354,10 @@ export const complexRecipes: Recipes = {
           durationMins: 5,
         },
         {
-          name: 'Season roots',
-          dependsOn: 'Cool roots',
-          durationMins: 5,
-          uses: 'worktop',
-          step: 'Toss the roots with salt, pepper and goose fat then lay out on a baking tray.',
-        },
-        {
           name: 'Room temp',
           startTime: christmasDay,
           uses: 'worktop',
-          step: 'Bring the veg out of the fridge to cool to room temperature.',
+          step: 'Bring the potatoes out of the fridge to cool to room temperature.',
           durationMins: 95,
         },
         {
@@ -429,6 +389,69 @@ export const complexRecipes: Recipes = {
           durationMins: 15,
         },
         {
+          name: 'Rest',
+          dependsOn: 'Second turn',
+          uses: 'worktop',
+          step: 'Leave to cool for 5 minutes before serving.',
+          durationMins: 5,
+        },
+      ],
+    },
+    veg: {
+      name: 'Honey roasted Carrots and Parsnips',
+      ingredients: [
+        '4 Large Carrots, peeled but not topped and tailed',
+        '4 Large Parsnips, peeled but not topped and tailed',
+        '2 cloves garlic heads cut off',
+        '1 bag of fresh thyme, roughly chopped',
+        '1 bag of fresh rosemary, roughly chopped',
+        'handful of peppercorns',
+        'Runny honey',
+      ],
+      method: [
+        {
+          name: 'Boil roots',
+          dependsOn: 'pigs.Store',
+          uses: 'hob-pot',
+          step: 'Cover the the carrots and parsnips in cold water then bring to boil and cook for 10 minutes.',
+          durationMins: 20,
+        },
+        {
+          name: 'Cool roots',
+          dependsOn: 'Boil roots',
+          uses: 'worktop',
+          step: 'Strain the roots, leaving them in the strainer',
+          durationMins: 10,
+        },
+        {
+          name: 'Prep roots',
+          dependsOn: 'Cool roots',
+          durationMins: 5,
+          uses: 'chopping board',
+          step: 'Top and tail and quarter the veg.',
+        },
+        {
+          name: 'Season roots',
+          dependsOn: 'Prep roots',
+          durationMins: 5,
+          uses: 'worktop',
+          step: 'Toss the roots with salt, pepper and goose fat then lay out on a baking tray.',
+        },
+        {
+          name: 'Room temp',
+          startTime: christmasDay,
+          uses: 'worktop',
+          step: 'Bring the veg out of the fridge to cool to room temperature.',
+          durationMins: 95,
+        },
+        {
+          name: 'Preheat oven',
+          dependsOn: 'Room temp',
+          uses: 'oven',
+          step: 'Preheat the oven to 200°',
+          durationMins: 5,
+        },
+        {
           name: 'Cook roots',
           dependsOn: 'Preheat oven',
           durationMins: 30,
@@ -444,7 +467,7 @@ export const complexRecipes: Recipes = {
         },
         {
           name: 'Rest',
-          dependsOn: 'Cook roots',
+          dependsOn: 'Baste roots',
           uses: 'worktop',
           step: 'Leave to cool for 5 minutes before serving.',
           durationMins: 5,
@@ -511,7 +534,7 @@ export const complexRecipes: Recipes = {
           name: 'Prep',
           uses: 'worktop',
           step: 'Cut the cocktail sticks in half. Wrap each sausage in a rasher of bacon, pinning in place with the 2 halves of the cocktail sticks.',
-          startTime: christmasEve,
+          dependsOn: 'goose.Store',
           durationMins: 15,
         },
         {
@@ -560,7 +583,7 @@ export const complexRecipes: Recipes = {
           uses: 'chopping board',
           step: 'Quarter all the brussel sprouts, discarding any loose leaves, halve the chestnuts',
           durationMins: 5,
-          startTime: christmasEve,
+          dependsOn: 'veg.Season roots',
         },
         {
           name: 'Store',

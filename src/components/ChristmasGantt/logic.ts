@@ -21,30 +21,6 @@ const christmasDay = new Date(2023, 12, 25);
 
 const minsToMillis = (minutes: number): number => minutes * 60 * 1000;
 
-const determineDateRange = (
-  step: Step,
-  builtTasks: Task[]
-): { startDate: Date; endDate: Date } => {
-  let startDate = step.startTime;
-  if (step.dependsOn) {
-    const task = builtTasks.find(({ name }) => name === step.dependsOn);
-    if (!task) {
-      throw new Error(
-        `${step.name} depends on ${step.dependsOn} which could not be found`
-      );
-    }
-    startDate = task.endDate;
-  }
-  if (!startDate) {
-    throw new Error(`${step.name} had neither dependsOn or startTime.`);
-  }
-
-  const endDate = new Date(
-    startDate.getTime() + minsToMillis(step.durationMins)
-  );
-  return { startDate, endDate };
-};
-
 const determineTaskColor = (uses: Step['uses']): string => {
   switch (uses) {
     case 'hob-pot':
@@ -76,22 +52,148 @@ const determineTaskColor = (uses: Step['uses']): string => {
   }
 };
 
+type StartingTask = Omit<Task, 'startDate' | 'endDate'> & {
+  durationMins: number;
+  startTime: Date;
+};
+type DependentTask = Omit<Task, 'startDate' | 'endDate'> & {
+  durationMins: number;
+  dependsOn: string;
+};
+
+type TerribleTask = StartingTask | DependentTask;
+type SeparatedTasks = {
+  first: StartingTask[];
+  rest: DependentTask[];
+};
+const buildDependentTasks = (
+  taggedRecipes: (Recipe & { tag: string })[]
+): Task[] => {
+  const terribleTasks = taggedRecipes.flatMap((recipe) =>
+    recipe.method.map((step): TerribleTask => {
+      const color = determineTaskColor(step.uses);
+      const base = {
+        group: recipe.tag,
+        name: recipe.tag + '.' + step.name,
+        color,
+        durationMins: step.durationMins,
+      };
+      if (step.dependsOn) {
+        return {
+          ...base,
+          dependsOn: step.dependsOn.includes('.')
+            ? step.dependsOn
+            : `${base.group}.${step.dependsOn}`,
+        };
+      } else if (step.startTime) {
+        return { ...base, startTime: step.startTime };
+      } else {
+        throw new Error(
+          `Step '${step.name}' has neither dependsOn or startTime.`
+        );
+      }
+    })
+  );
+
+  const { first, rest } = terribleTasks.reduce(
+    (agg, next) => {
+      if ((next as StartingTask).startTime) {
+        return {
+          first: [...agg.first, next],
+          rest: agg.rest,
+        } as SeparatedTasks;
+      }
+      return {
+        first: agg.first,
+        rest: [...agg.rest, next as DependentTask],
+      } as SeparatedTasks;
+    },
+    {
+      first: [],
+      rest: [],
+    } as SeparatedTasks
+  );
+
+  if (first.length === 0) {
+    throw new Error('No tasks to start from.');
+  }
+
+  let tasks: Task[] = first.map((task) => {
+    const endDate = new Date(
+      task.startTime.getTime() + minsToMillis(task.durationMins)
+    );
+    return {
+      ...task,
+      startDate: task.startTime,
+      endDate: endDate,
+    };
+  });
+
+  let miss = rest;
+  let lastMissLength: number = -1;
+  let buffer = tasks;
+  while (miss.length !== 0 && lastMissLength !== miss.length) {
+    lastMissLength = miss.length;
+
+    const { hit, missed } = miss.reduce(
+      (agg, next) => {
+        const foundDependent = buffer.find(
+          ({ name }) => name === next.dependsOn
+        );
+        if (foundDependent) {
+          return {
+            hit: [...agg.hit, dependentToTask(next, foundDependent)],
+            missed: agg.missed,
+          };
+        }
+        return { hit: agg.hit, missed: [...agg.missed, next] };
+      },
+      {
+        hit: [] as Task[],
+        missed: [] as DependentTask[],
+      }
+    );
+
+    tasks.push(...hit);
+    buffer = hit;
+    miss = missed;
+  }
+  if (miss.length !== 0) {
+    console.error(`Some tasks did not have dependents found for them.`);
+  }
+
+  return tasks;
+};
+
+const dependentToTask = (dependent: DependentTask, peer: Task): Task => {
+  const endDate = new Date(
+    peer.endDate.getTime() + minsToMillis(dependent.durationMins)
+  );
+  return {
+    ...dependent,
+    startDate: peer.endDate,
+    endDate,
+  };
+};
+
 export const buildTasksFromRecipes = (recipes: Recipes): GroupedTasks => {
   const taggedRecipes = Object.values(recipes)
     .flatMap(Object.entries)
     .map(([tag, recipe]) => ({ ...recipe, tag }) as Recipe & { tag: string });
 
-  const recipeTasks = taggedRecipes.flatMap(({ name: recipeName, method }) => {
-    const tasks: Task[] = [];
-    method.map((step) => {
-      const dateRange = determineDateRange(step, tasks);
-      const color = determineTaskColor(step.uses);
-      tasks.push({ ...dateRange, group: recipeName, color, name: step.name });
-    });
-    return tasks;
-  });
+  const dependentTasks = buildDependentTasks(taggedRecipes);
 
-  return recipeTasks.reduce(
+  // const recipeTasks = taggedRecipes.flatMap(({ name: recipeName, method }) => {
+  //   const tasks: Task[] = [];
+  //   method.map((step) => {
+  //     const dateRange = determineDateRange(step, tasks);
+  //     const color = determineTaskColor(step.uses);
+  //     tasks.push({ ...dateRange, group: recipeName, color, name: step.name });
+  //   });
+  //   return tasks;
+  // });
+
+  return dependentTasks.reduce(
     (groups, task) => {
       if (task.startDate.getTime() > christmasDay.getTime()) {
         return { eve: groups.eve, day: [...groups.day, task] };
