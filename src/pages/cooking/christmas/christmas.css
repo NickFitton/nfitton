@@ -1,0 +1,43 @@
+h1,
+h2,
+p,
+.recipe {
+  margin: auto;
+  max-width: 1600px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.gantt-chart,
+header {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: solid 2px var(--primary);
+}
+
+header {
+  p {
+    font-weight: 300;
+    color: #aeaeae;
+  }
+  a {
+    font-weight: 400;
+    color: #ebebeb;
+  }
+}
+
+.content {
+  margin: 2rem;
+}
+.recipe {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+@media only screen and (max-width: 650px) {
+  .recipe {
+    grid-template-columns: unset;
+  }
+}

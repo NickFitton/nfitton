@@ -1,0 +1,39 @@
+---
+import { type Recipe } from '../pages/christmas/content.ts';
+interface Props {
+  course: string;
+  anchor: string;
+  recipes: Record<string, Recipe>;
+}
+
+const { course, anchor, recipes } = Astro.props;
+---
+
+<section>
+  <h1 id={anchor}>{course}</h1>
+  {
+    Object.entries(recipes).map(([name, recipe]) => (
+      <>
+        <h2 id={name}>{recipe.name}</h2>
+        <div class="recipe">
+          <div class="ingredients">
+            <h3>Ingredients</h3>
+            <ul>
+              {recipe.ingredients.map((ingredient) => (
+                <li>{ingredient}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="method">
+            <h3>Method</h3>
+            <ol>
+              {recipe.method.map((step) => (
+                <li>{step.step}</li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </>
+    ))
+  }
+</section>

@@ -1,0 +1,49 @@
+---
+import { type Task } from '../../pages/cooking/christmas/logic';
+import './Gantt.css';
+
+interface Props {
+  id: string;
+  tasks: Task[];
+  height: string;
+}
+
+const { id, tasks, height } = Astro.props;
+---
+
+<div id={id} style=`height: ${height};`></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"
+></script>
+<script type="text/javascript" define:vars={{ id, tasks }}>
+  google.charts.load('current', { packages: ['timeline'] });
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var container = document.getElementById(id);
+    var chart = new google.visualization.Timeline(container);
+    var dataTable = new google.visualization.DataTable();
+    dataTable.addColumn({ type: 'string', id: 'Room' });
+    dataTable.addColumn({ type: 'string', id: 'Name' });
+    dataTable.addColumn({ type: 'string', id: 'style', role: 'style' });
+    dataTable.addColumn({ type: 'date', id: 'Start' });
+    dataTable.addColumn({ type: 'date', id: 'End' });
+    dataTable.addRows([
+      ...tasks.map(({ group, name, color, startDate, endDate }) => [
+        group,
+        name.split('.')[1],
+        color,
+        new Date(startDate),
+        new Date(endDate),
+      ]),
+    ]);
+
+    var options = {
+      timeline: { colorByRowLabel: true },
+      alternatingRowStyle: false,
+      backgroundColor: '#2c2c2c',
+      fontName: 'RobotoSlab',
+    };
+
+    chart.draw(dataTable, options);
+  }
+</script>
