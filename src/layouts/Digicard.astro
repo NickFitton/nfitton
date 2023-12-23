@@ -4,7 +4,7 @@ const { frontmatter } = Astro.props;
 
 const aspectRatio = frontmatter.aspectRatio.toString();
 const imagePath = frontmatter.coverImgPath.toString();
-const images = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,gif}');
+const images = import.meta.glob('/src/assets/cards/*');
 ---
 
 <!doctype html>
@@ -33,7 +33,7 @@ const images = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,gif}');
       </div>
     </div>
     <div class="escape cont flip" data-content-escape>
-      <div class="content">
+      <div class="content" data-content-button>
         <div class="content-edge">
           <p class="written">{frontmatter.to.toString()}</p>
           <div>
@@ -103,23 +103,14 @@ const images = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,gif}');
         z-index: 10;
       }
 
-      &.cov {
-        z-index: 5;
-        transition: transform ease-in 0.5s;
-
-        &.flip {
-          z-index: 4;
-          transform: rotate3d(0, 1, 0, 90deg);
-        }
-      }
-
+      &.cov,
       &.cont {
         z-index: 5;
-        transition: transform 0.5s;
-        transform: rotate3d(0, 1, 0, 0deg);
+        transition: transform ease-in 0.75s;
+        transform: rotateY(0deg);
+
         &.flip {
-          z-index: 4;
-          transform: rotate3d(0, 1, 0, 90deg);
+          transform: rotateY(90deg);
         }
       }
 
@@ -218,12 +209,18 @@ const images = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,gif}');
     const coverEscape = document.querySelector('[data-cover-escape]');
     const contentEscape = document.querySelector('[data-content-escape]');
     coverBtn?.addEventListener('click', () => {
-      console.log('bong');
-      console.log(coverEscape);
       coverEscape?.classList.add('flip');
       setTimeout(() => {
         contentEscape?.classList.remove('flip');
-      }, 500);
+      }, 750);
+    });
+
+    const contentBtn = document.querySelector('[data-content-button]');
+    contentBtn?.addEventListener('click', () => {
+      contentEscape?.classList.add('flip');
+      setTimeout(() => {
+        coverEscape?.classList.remove('flip');
+      }, 750);
     });
   </script>
 </html>
