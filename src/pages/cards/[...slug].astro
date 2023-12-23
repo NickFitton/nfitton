@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Digicard from '../../layouts/Digicard.astro';
+
+export async function getStaticPaths() {
+  const cardEntries = await getCollection('cards');
+  return cardEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Digicard frontmatter={entry.data}>
+  <Content />
+</Digicard>

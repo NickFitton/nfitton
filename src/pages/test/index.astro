@@ -1,0 +1,214 @@
+---
+import { Image } from 'astro:assets';
+const images = import.meta.glob('/src/assets/**/*.{jpeg,jpg,png,gif}');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Nick Fitton - Senior Software Engineer" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <div class="escape env" data-envelope-escape>
+      <div class="envelope" data-envelope-button>
+        <div class="writing">
+          <div>
+            <p class="written">To</p>
+            <p class="written">Mum, Shaun & the Cats</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="escape cov" data-cover-escape>
+      <div class="cover" data-cover-button>
+        <Image
+          src={images['/src/assets/cards/f61648f8.png']()}
+          alt="digital scan of a card"
+        />
+      </div>
+    </div>
+    <div class="escape cont flip" data-content-escape>
+      <div class="content">
+        <p class="written">Mum, Shaun & the Cats</p>
+        <div>
+          <p class="printed">
+            Wishing you a joyous Christmas and a prosperous New Year.
+          </p>
+          <div class="written centered">
+            <p>
+              We hope you have a wonderful time over the christmas period and we
+              can't wait to meet up again and have a good catch up over a tea or
+              gin or three!
+            </p>
+          </div>
+        </div>
+        <div class="suffix">
+          <p class="written">Lots of love</p>
+          <p class="written">Heather, Nick, Tequila & Sambuca</p>
+          <p class="written">xXx xXx</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <style is:global>
+    @font-face {
+      font-family: DancingScript;
+      src: url(/fonts/DancingScript-VariableFont_wght.ttf);
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: Lora;
+      src: url(/fonts/Lora-VariableFont_wght.ttf);
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .written {
+      font-family: DancingScript, system-ui, sans-serif;
+      font-size: 20px;
+      &.centered {
+        text-align: center;
+      }
+    }
+
+    .printed {
+      font-family: Lora, system-ui, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+    }
+    .escape {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+
+      transition:
+        right ease-in-out 1s,
+        left ease-in-out 1s;
+
+      &.env {
+        z-index: 10;
+      }
+
+      &.cov {
+        z-index: 5;
+        transition: transform ease-in 0.5s;
+
+        &.flip {
+          z-index: 4;
+          transform: rotate3d(0, 1, 0, 90deg);
+        }
+      }
+
+      &.cont {
+        z-index: 5;
+        transition: transform 0.5s;
+        transform: rotate3d(0, 1, 0, 0deg);
+        &.flip {
+          z-index: 4;
+          transform: rotate3d(0, 1, 0, 90deg);
+        }
+      }
+
+      &.open {
+        left: -100vw;
+        right: 0;
+      }
+
+      &.under {
+        z-index: 0;
+      }
+    }
+    .envelope {
+      max-width: calc(100vw - 6rem);
+      max-height: calc(100vh - 6rem);
+      width: auto;
+      height: auto;
+      margin: 3rem;
+      border: 1px solid black;
+      aspect-ratio: 1396/1987;
+
+      cursor: pointer;
+
+      background: darkred;
+      .writing {
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        p {
+          color: white;
+          margin: 0;
+          font-size: 36px;
+        }
+      }
+    }
+
+    .cover {
+      max-width: calc(100vw - 6.8rem);
+      max-height: calc(100vh - 6.8rem);
+      width: auto;
+      height: auto;
+      margin: 3.4rem;
+      aspect-ratio: 1396/1987;
+
+      cursor: pointer;
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        height: auto;
+        width: auto;
+      }
+    }
+
+    .content {
+      max-width: calc(100vw - 6.8rem);
+      max-height: calc(100vh - 6.8rem);
+      width: auto;
+      height: auto;
+      margin: 3.4rem;
+      aspect-ratio: 1396/1987;
+      background-color: #eee;
+
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    const envelope = document.querySelector('[data-envelope-button]');
+    const escape = document.querySelector('[data-envelope-escape]');
+    envelope?.addEventListener('click', () => {
+      escape?.classList.add('open');
+      setTimeout(() => {
+        escape?.classList.add('under');
+        escape?.classList.remove('open');
+      }, 1000);
+    });
+
+    const coverBtn = document.querySelector('[data-cover-button]');
+    const coverEscape = document.querySelector('[data-cover-escape]');
+    const contentEscape = document.querySelector('[data-content-escape]');
+    coverBtn?.addEventListener('click', () => {
+      console.log('bong');
+      console.log(coverEscape);
+      coverEscape?.classList.add('flip');
+      setTimeout(() => {
+        contentEscape?.classList.remove('flip');
+      }, 500);
+    });
+  </script>
+</html>

@@ -8,6 +8,19 @@ const skillCollection = defineCollection({
   }),
 });
 
+const cardCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    to: z.string(),
+    from: z.string(),
+    cardMessage: z.string(),
+    coverImgPath: z.string(),
+    aspectRatio: z.string(),
+  }),
+});
+
 export const collections = {
   skills: skillCollection,
+  cards: cardCollection,
 };
