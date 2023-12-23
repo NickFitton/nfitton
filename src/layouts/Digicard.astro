@@ -15,6 +15,7 @@ const images = import.meta.glob('/src/assets/cards/*');
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <title>{frontmatter.title.toString()}</title>
   </head>
   <body>
     <div class="escape env" data-envelope-escape>
@@ -27,15 +28,15 @@ const images = import.meta.glob('/src/assets/cards/*');
         </div>
       </div>
     </div>
-    <div class="escape cov" data-cover-escape>
-      <div class="cover" data-cover-button>
+    <div class="escape cov">
+      <div class="card cover" data-cover-button>
         <Image src={images[imagePath]()} alt="digital scan of a card" />
       </div>
     </div>
-    <div class="escape cont flip" data-content-escape>
-      <div class="content" data-content-button>
+    <div class="escape cont">
+      <div class="card content flip" data-content-button>
         <div class="content-edge">
-          <p class="written">{frontmatter.to.toString()}</p>
+          <p class="written">To {frontmatter.to.toString()}</p>
           <div>
             <p class="printed">
               {frontmatter.cardMessage.toString()}
@@ -103,14 +104,16 @@ const images = import.meta.glob('/src/assets/cards/*');
         z-index: 10;
       }
 
-      &.cov,
+      &.cov {
+        z-index: 5;
+        &:has(.cover.flip) {
+          z-index: 4;
+        }
+      }
       &.cont {
         z-index: 5;
-        transition: transform ease-in 0.75s;
-        transform: rotateY(0deg);
-
-        &.flip {
-          transform: rotateY(90deg);
+        &:has(.content.flip) {
+          z-index: 4;
         }
       }
 
@@ -135,6 +138,7 @@ const images = import.meta.glob('/src/assets/cards/*');
       cursor: pointer;
 
       background: darkred;
+      box-shadow: 8px 0 10px #aaa;
       .writing {
         height: 80%;
         display: flex;
@@ -150,32 +154,38 @@ const images = import.meta.glob('/src/assets/cards/*');
       }
     }
 
-    .cover {
+    .card {
       max-width: calc(100vw - 6.8rem);
       max-height: calc(100vh - 6.8rem);
       width: auto;
       height: auto;
       margin: 3.4rem;
+
       aspect-ratio: var(--aspectRatio);
-
+      transition: transform ease-in-out 0.75s;
+      transform: rotateY(0deg);
       cursor: pointer;
+    }
 
+    .cover {
       img {
         max-height: 100%;
         max-width: 100%;
         height: auto;
         width: auto;
+        box-shadow: 5px 0 10px #333333ab;
+      }
+      &.flip {
+        transform: rotateY(90deg) translateX(75%);
       }
     }
 
     .content {
-      max-width: calc(100vw - 6.8rem);
-      max-height: calc(100vh - 6.8rem);
-      width: auto;
-      height: auto;
-      margin: 3.4rem;
-      aspect-ratio: var(--aspectRatio);
       background-color: #eee;
+      box-shadow: 5px 0 10px #333333ab;
+      &.flip {
+        transform: rotateY(90deg) translateX(-75%);
+      }
     }
 
     .content-edge {
@@ -206,20 +216,19 @@ const images = import.meta.glob('/src/assets/cards/*');
     });
 
     const coverBtn = document.querySelector('[data-cover-button]');
-    const coverEscape = document.querySelector('[data-cover-escape]');
-    const contentEscape = document.querySelector('[data-content-escape]');
     coverBtn?.addEventListener('click', () => {
-      coverEscape?.classList.add('flip');
+      console.log("coverBtn?.addEventListener('click', () => {");
+      coverBtn?.classList.add('flip');
       setTimeout(() => {
-        contentEscape?.classList.remove('flip');
+        contentBtn?.classList.remove('flip');
       }, 750);
     });
 
     const contentBtn = document.querySelector('[data-content-button]');
     contentBtn?.addEventListener('click', () => {
-      contentEscape?.classList.add('flip');
+      contentBtn?.classList.add('flip');
       setTimeout(() => {
-        coverEscape?.classList.remove('flip');
+        coverBtn?.classList.remove('flip');
       }, 750);
     });
   </script>

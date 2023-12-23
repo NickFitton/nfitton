@@ -1,11 +1,11 @@
 ---
 title: Merry Christmas!
-to: Mum, Shaun and the Cats
+to: Dad, Ali and the Cats
 from: Heather, Nick, Tequila & Sambuca
-cardMessage: Wishing you a joyous Christmas and a prosperous New Year.
+cardMessage: Wishing you a Merry Christmas filled with love and joy!
 coverImgPath: /src/assets/cards/c8c4488a.webp
 aspectRatio: 5/7
 slug: c8c4488a
 ---
 
-We hope you have a wonderful time over the christmas period and we can't wait to meet up again and have a good catch up over a tea or gin or three!
+Hope you have a wonderful Christmas, we cant wait to see you to celebrate the new year!
