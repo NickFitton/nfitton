@@ -8,4 +8,4 @@ aspectRatio: 5/7
 slug: everyone
 ---
 
-We hope you have a wonderful Christmas and a very happy new year. Snding lots of lve from our family to yours.
+We hope you have a wonderful Christmas and a very happy new year. Sending lots of love from our family to yours.
