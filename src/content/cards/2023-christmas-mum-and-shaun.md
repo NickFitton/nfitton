@@ -2,7 +2,7 @@
 title: Merry Christmas!
 to: Mum, Shaun and the Cats
 from: Heather, Nick, Tequila & Sambuca
-cardMessage: Wishing you a joyous Christmas and a prosperous New Year.
+cardMessage: Wishing you a merry Christmas and a happy New Year.
 coverImgPath: /src/assets/cards/ca19883e.webp
 aspectRatio: 5/7
 slug: ca19883e
