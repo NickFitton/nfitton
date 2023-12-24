@@ -38,7 +38,7 @@ const images = import.meta.glob('/src/assets/cards/*');
         <div class="content-edge">
           <p class="written">To {frontmatter.to.toString()}</p>
           <div>
-            <p class="printed">
+            <p class="printed centered">
               {frontmatter.cardMessage.toString()}
             </p>
             <div class="written centered">
@@ -82,6 +82,9 @@ const images = import.meta.glob('/src/assets/cards/*');
 
     .printed {
       font-family: Lora, system-ui, sans-serif;
+      &.centered {
+        text-align: center;
+      }
     }
 
     body {
@@ -96,12 +99,11 @@ const images = import.meta.glob('/src/assets/cards/*');
       bottom: 0;
       right: 0;
 
-      transition:
-        right ease-in-out 1s,
-        left ease-in-out 1s;
-
       &.env {
         z-index: 10;
+        &:has(.envelope.under) {
+          z-index: 0;
+        }
       }
 
       &.cov {
@@ -116,26 +118,22 @@ const images = import.meta.glob('/src/assets/cards/*');
           z-index: 4;
         }
       }
-
-      &.open {
-        left: -100vw;
-        right: 0;
-      }
-
-      &.under {
-        z-index: 0;
-      }
     }
     .envelope {
       max-width: calc(100vw - 6rem);
       max-height: calc(100vh - 6rem);
       width: auto;
       height: auto;
-      margin: 3rem;
+      margin: 3rem auto;
       border: 1px solid black;
       aspect-ratio: var(--aspectRatio);
 
+      transition: ease-in-out 1s;
       cursor: pointer;
+
+      &.open {
+        transform: translateX(-105%);
+      }
 
       background: darkred;
       box-shadow: 8px 0 10px #aaa;
@@ -159,7 +157,7 @@ const images = import.meta.glob('/src/assets/cards/*');
       max-height: calc(100vh - 6.8rem);
       width: auto;
       height: auto;
-      margin: 3.4rem;
+      margin: 3.4rem auto;
 
       aspect-ratio: var(--aspectRatio);
       transition: transform ease-in-out 0.75s;
@@ -206,12 +204,11 @@ const images = import.meta.glob('/src/assets/cards/*');
   </style>
   <script>
     const envelope = document.querySelector('[data-envelope-button]');
-    const escape = document.querySelector('[data-envelope-escape]');
     envelope?.addEventListener('click', () => {
-      escape?.classList.add('open');
+      envelope.classList.add('open');
       setTimeout(() => {
-        escape?.classList.add('under');
-        escape?.classList.remove('open');
+        envelope.classList.add('under');
+        envelope.classList.remove('open');
       }, 1000);
     });
 

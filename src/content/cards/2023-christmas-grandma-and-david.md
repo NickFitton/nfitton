@@ -8,4 +8,4 @@ aspectRatio: '7/10'
 slug: f410be2d
 ---
 
-We hope you have a wonderful time over the christmas period and we can't wait to meet up again and have a good catch up over a tea or gin or three!
+We hope you have a wonderful time over the christmas period. We look forward to planning a visit to come and see you both sometime in the new year for a good ol' catch-up.

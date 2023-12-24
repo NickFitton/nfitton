@@ -8,4 +8,4 @@ aspectRatio: 5/7
 slug: 51a0a35e
 ---
 
-We hope you have a wonderful time spending Christmas with us, we're so excited to host a family meal!
+We look forward to spending so much time with you over the Christmas period and hope you have a wonderful new year.

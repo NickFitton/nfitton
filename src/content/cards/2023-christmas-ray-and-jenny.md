@@ -8,4 +8,4 @@ aspectRatio: 5/7
 slug: 271e89f6
 ---
 
-We hope you have a wonderful time over the christmas period and we can't wait to see you sometime soon in the new year!
+We wish you a wonderful time over the christmas period and we look forward to seeing you both sometime soon in the new year - we're definitely over due a trip down to Cornwall!

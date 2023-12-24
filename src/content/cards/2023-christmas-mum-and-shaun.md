@@ -8,4 +8,4 @@ aspectRatio: 5/7
 slug: ca19883e
 ---
 
-We hope you have a wonderful time over the christmas period and we can't wait to meet up again and have a good catch up over a tea or gin or three!
+We hope you have a wonderful time over the Christmas period and we can't wait to meet up again and have a good catch up over a tea or gin or three!

@@ -8,4 +8,4 @@ aspectRatio: 7/10
 slug: 48cc7673
 ---
 
-We hope you have a wonderful Christmas and have a great time celebrating the new year!
+We hope you have a wonderful Christmas and have a great time celebrating the new year! We look forward to seeing you both again sometime in the new year.
