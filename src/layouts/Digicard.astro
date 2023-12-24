@@ -11,7 +11,10 @@ const images = import.meta.glob('/src/assets/cards/*');
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Nick Fitton - Senior Software Engineer" />
+    <meta
+      name="description"
+      content={`${frontmatter.to.toString()}, your christmas card is ready!`}
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
