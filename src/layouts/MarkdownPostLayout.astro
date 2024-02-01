@@ -1,11 +1,13 @@
 ---
 import Layout from './Layout.astro';
+import { format } from 'date-fns';
 const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title.toString()}>
   <div class="content">
     <h1>{frontmatter.title.toString()}</h1>
+    <h3>{format(frontmatter.pubDate, 'PPPP')}</h3>
     <p>{frontmatter.description.toString()}</p>
     <slot />
   </div>

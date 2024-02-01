@@ -152,9 +152,10 @@ section.info {
   .skill-tags {
     display: flex;
     flex-flow: row wrap;
+    align-items: start;
     gap: 0.5rem;
   }
-  a.skill-tag {
+  .skill-tag {
     color: #ebebeb;
     border: 2px solid var(--primary);
     background-color: #2e0f3a;

@@ -4,6 +4,8 @@ import './new.css';
 import { experience } from './content';
 import { getCollection } from 'astro:content';
 const allSkills = await getCollection('skills');
+const allBlogs = await getCollection('blog');
+const yolBlogs = allBlogs.filter(({ data: { tags } }) => tags.includes('yol'));
 const buildTags = (body: string) =>
   body
     .split('\n')
@@ -166,6 +168,31 @@ const buildTags = (body: string) =>
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          <h3>Year of Learning</h3>
+          <p>
+            For every month of 2024 I'm learning the basics of a new/old
+            langange and posting about it as I go!
+          </p>
+          {
+            yolBlogs.map((post) => (
+              <div class="skill">
+                <div class="skill-content">
+                  <a class="left" href={`/blog/${post.slug}`}>
+                    <h4>{post.data.title}</h4>
+                  </a>
+                  <div class="skill-tags">
+                    {post.data.tags
+                      .filter((tag) => tag !== 'yol')
+                      .map((tag) => (
+                        <span class="skill-tag">{tag}</span>
+                      ))}
+                  </div>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>

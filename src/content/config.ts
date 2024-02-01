@@ -20,7 +20,18 @@ const cardCollection = defineCollection({
   }),
 });
 
+const blogCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.date(),
+    description: z.string(),
+    tags: z.array(z.string()),
+  }),
+});
+
 export const collections = {
   skills: skillCollection,
   cards: cardCollection,
+  blog: blogCollection,
 };
