@@ -1,0 +1,35 @@
+summary {
+  display: flex;
+  flex-flow: row no-wrap;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+.actions {
+  display: flex;
+  flex-flow: row no-wrap;
+  gap: 0.5rem;
+}
+.summary-button {
+  height: 1rem;
+  aspect-ratio: 1;
+  border-radius: 0.5rem;
+  border-width: 0;
+  &.close {
+    background-color: #fcaf24;
+    color: #a35d0d;
+  }
+  &.open {
+    background-color: #27bf31;
+    color: #0b5202;
+  }
+}
+
+.code-wrapper {
+  padding: 0.5rem;
+}
+
+details {
+  padding: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}

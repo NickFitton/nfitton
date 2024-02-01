@@ -1,0 +1,175 @@
+---
+title: 'January: Delving into Go'
+pubDate: 2024-01-31
+description: 'Learning a language a month for 2024. January was the month of Go.'
+tags: ['Golang', 'Templ', 'Tailwind', 'yol']
+---
+
+import Pre from '../../components/htmdx/Pre.astro';
+export const components = { pre: Pre };
+
+# Introduction
+
+As the start of the year, I wanted to learn a language I hadn't used, but had heard a lot about. Thanks to the likes of Changelogs Go Time and The Primeagen being in my media consumption circle, Golang felt like the right place to start.
+Of the course of the month, I planned to:
+
+1. Smash through a Udemy course to get an understanding of the basics
+2. Work through as many Advent of Code questions as I could from 2023
+3. Design and build a second rate replica of Scott Tolinski's recent Habits project
+
+I don't expect to get a massive amount completed, as I'm working full time and would rather relax than dev in the evenings, I've slotted about an hour every morning to working on development.
+
+# Initial Impressions
+
+Go was pretty easy to get set up, installing is as simple as installing a package from the Golang website, I'm currently invested in using VSCode and there's a great extension for everything you need there.
+Initially working with Go was really simple, working with a small project getting up and running was as simple as `go run main.go`. Though I got irritated with some of the tooling once I started getting into working in a larger project.
+
+# Learning Journey
+
+## Part 1 - Intensive learnings
+
+I started by diving into a Golang course to quickly grasp the basics for my first Advent of Code challenge. Luckily, I had access to all Udemy courses thanks to a work perk. I chose the first course I found with great ratings and reviews, thinking I could breeze through its 9 hours of content in a week at double speed.
+
+However, while the course was well-made and the instructor was super enthusiastic about teaching languages, it turned out to be a bit outdated. Some of the basic stuff it taught, like reading from a file and generating random numbers, had been replaced by newer, better methods.
+
+Feeling a bit anxious about learning an outdated version of Golang (it reminded me of being stuck with Eclipse at university in 2016), I switched to another course that I would definitely recommend to others.
+The instructor provides a great course from getting started to complete RESTful system working with JWT & DB's.
+
+Once I felt comfortable with the language, and running through the majority of the course, I decided to get cracking with some "practical" development.
+
+## Part 2 - Advent of Code
+
+Last year, I didn't get a chance to join in on Advent of Code as I was swamped with a major migration project at work, especially with fewer staff around. This situation, however, gave me a great opportunity to apply my new Go skills.
+
+I got really into using Go's built-in benchmarking tools, which turned into a personal challenge to constantly improve my code's performance. This self-competition was not only fun but also a fantastic learning experience. It allowed me to explore Go's text handling capabilities, like iterating through strings as runes instead of the usual splitting and iterating method. I saw some significant improvements in my code through this approach.
+
+Another Go feature I really liked was how you can slice strings just like arrays. My initial attempts were a bit shaky, but I quickly got the hang of it. This experience was both enjoyable and a great boost to my coding skills.
+
+> An example of popping the first character of a string in go
+
+```go
+someString := "Here's a funky string"
+// Prints "Here's a funky string"
+fmt.Println(someString)
+pop, someString := someString[0:1], someString[1:]
+// Prints "H ere's a funky string"
+fmt.Println(pop, someString)
+```
+
+Whilst I wasn't expecting to complete the whole advent, I started to taper off by the 7th challenge and started moving to creating an actual project.
+One day I hope to get back to AoC 2023 and complete the year, but realistically it'll probably _sit on the pile of incomplete projects in my GitHub bin_.
+
+## Part 3 - GoRoutines
+
+I quickly decided on my first project: a tracker to keep tabs on the days I was learning a language. I wanted it to be public but also have some private self-improvement routines, so I could keep my occasional slip-ups hidden.
+
+I noticed Scott Tolinski from the Syntax podcast was working on something similar to what I had in mind, which was a bit of a relief. It meant I could potentially peek at his project for ideas or guidance if needed. My plan was to use magic links in emails for user authentication.
+
+The first thing I did was set up a basic CRUD API for users, using Gin, a web framework I heard about on the Go Time podcast. Even though Go lets you write a server from scratch, Gin's simplicity in setting up and handling requests appealed to me.
+
+Once the API was up and running, I felt the need to build a frontend, so I didn't have to use Postman just to create users. I chose Templ, a framework highly praised by The Primagen. It had a handy VS Code extension for syntax highlighting, but lacked Javascript autocomplete. Not a big deal, since I usually know what I want to type.
+
+As someone who calls themselves a fullstack developer but knows they can't design to save their life, I turned to v0 for help. It helped me scaffold out the basic pages for user and routine creation. This left me to figure out the routine preview logic, so users could see what they were setting up.
+
+v0 uses Tailwind for styling, and although it's meant for React components, it fortunately provides an HTML output that I could fit into my design plans.
+
+But then suddenly it was the 29th, and I realized I had run out of time to implement all the additional features I wanted: magic link authentication, public/private views, and a database!
+
+# Comparative Analysis
+
+Whilst I didn't move fast whilst creating my project, I found it relatively easy to create the GoRoutines project, whilst it isn't exemplary (should have done testing, deployment, security) I feel like I was quite productive comparing to other times I have worked in a language completely green.
+One thing I tripped on was Templ's VS Code extension, it's lack of JavaScript syntax highlighting lead me to a couple of daft mistakes that a highlighter would help resolve quickly, but lead me to drain hours of investigation on what would essentially be a typo.
+A second point is that I love TypeScript, so I felt I was working in the nude working with JS. However neither of these points are a weakness of Golang itself.
+
+# Gotchas and Challenges
+
+## Int, int64, Bytes, runes and strings
+
+The first challenge I came across when working on Advent of Code questions was the difference between bytes runes and strings.
+Take the following string:
+
+```go
+const funkyString = "Here's a funky string"
+
+// If you take an indexed element of the string, you've got a byte
+someByte := funkyString[0]
+
+// If you take a range of elements from a string, you've got a string
+someString := funkyString[0:1]
+
+// If you iterate over a string, you've got a loop of runes
+for _, someRune := range funkyString {
+}
+```
+
+Coming into Go this felt really messy, I'm aware that Go is built to have no breaking changes between versions but it feels like the split in logic would make sense moved to the `strconv` package, leaving the core functionality to return runes:
+
+```go
+// Somewhere in strconv
+func Atob(s string) ([]byte, error) {}
+func Slice(s string, from int, to int) (string, error) {}
+
+// And in your Go code
+const funkyString = "Here's a funky string"
+aRune := funkyString[0]
+aRuneArray := funkyString[0:1]
+for _, someRune := range funkyString {
+}
+```
+
+Whilst I was a pain, this wasn't a blocker and in the end I got used to this gotcha and worked around them for my AoC solutions.
+
+## Remember the importance of capitalization
+
+Getting started with my first GET endpoint on my Gin server, I was getting so frustrated with not receiving user data back:
+
+```go
+type User struct {
+	id          uuid.UUID
+	email       string    `binding:"required"`
+	createdAt   time.Time
+	lastLoginAt time.Time
+}
+```
+
+I'm sure a regular Gopher would spot the issue I was having immediately, but I had forgotten one of the key rules when defining a `struct` in Go.
+Lower case fields in a struct are not exported, meaning they are not accessible outside of the package they're defined in, and Gin can only write out exported fields, coming from TypeScript I had glossed over this fact entirely. There was a point this dawned on me whilst looking through my own packages, remembering I'd exported methods by starting them with uppercase, that it was probably a requirement to make the struct fields uppercase to resolve the issue, concluding with a type looking like this, using exported fields and json annotations to map the responses to my required output format.
+
+```go
+type User struct {
+	Id          uuid.UUID `json:"id"`
+	Email       string    `binding:"required" json:"email"`
+	CreatedAt   time.Time `json:"createdAt"`
+	LastLoginAt time.Time `json:"lastLoginAt"`
+}
+```
+
+# Personal Reflection
+
+After the first month, I have a few changes I need to make in my routine when learning the language of the month, whilst I managed to do the key things I was hoping to achieve a more fulfilled project, maybe even something deployed and demonstrable.
+
+# Conclusion
+
+Overall, I had a really positive experience with Golang. Given the opportunity, I'd be excited to join a team working with/getting started in the ecosystem. The community seems to be a thriving hub of interest and change.
+Whilst I say that, I wouldn't build an entire project is Golang again, unless it required smaller, dev portals I don't feel that Templ was powerful enough to scale up to a larger codebase. I could however just be bias to web frameworks but I felt rather forced into a space rather than given the opportunity to explore.
+
+# Additional Resources
+
+## Projects worked on
+
+- [Advent of Code 2023](https://github.com/NickFitton/AdventOfCode/tree/learning-go)
+- [GoRoutine](https://github.com/NickFitton/GoRoutine)
+
+## People
+
+- [Go Time](https://changelog.com/gotime)
+- [The Primeagen](https://www.youtube.com/c/theprimeagen)
+
+## References
+
+- [Advent of Code Questions](https://adventofcode.com/2023)
+- [Golang website](https://go.dev/dl/)
+- [VS Code Golang Extension](https://marketplace.visualstudio.com/items?itemName=golang.Go)
+- [Gin](https://github.com/gin-gonic/gin)
+- [Templ](https://templ.guide/)
+- [TailWind](https://tailwindcss.com/)

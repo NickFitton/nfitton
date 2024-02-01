@@ -1,0 +1,49 @@
+---
+import './_pre.css';
+const props = Astro.props;
+const instanceId = Math.floor(Math.random() * 100000) + '';
+const {
+  style: { backgroundColor },
+} = props;
+---
+
+<details
+  open
+  id={'details-' + instanceId}
+  style={`background-color: ${backgroundColor}`}
+>
+  <summary
+    style={`background-color: ${backgroundColor}; filter: brightness(110%)`}
+  >
+    <span>Code snippet</span>
+    <div class="actions">
+      <button
+        aria-label="close snippet"
+        class="summary-button close"
+        id={'close-' + instanceId}>-</button
+      >
+      <button
+        aria-label="open snippet"
+        class="summary-button open"
+        id={'open-' + instanceId}>+</button
+      >
+    </div>
+  </summary><div class="code-wrapper"><code {...props}><slot /></code></div>
+</details>
+
+<script define:vars={{ instanceId }}>
+  document
+    .getElementById('close-' + instanceId)
+    .addEventListener('click', (e) => {
+      console.log('Close instance clicked', instanceId);
+      document.getElementById('details-' + instanceId).removeAttribute('open');
+    });
+  document
+    .getElementById('open-' + instanceId)
+    .addEventListener('click', (e) => {
+      console.log('Open instance clicked', instanceId);
+      document
+        .getElementById('details-' + instanceId)
+        .setAttribute('open', true);
+    });
+</script>
