@@ -7,7 +7,11 @@ const { frontmatter } = Astro.props;
 <Layout title={frontmatter.title.toString()}>
   <div class="content">
     <h1>{frontmatter.title.toString()}</h1>
-    <h3>{format(frontmatter.pubDate, 'PPPP')}</h3>
+    {
+      frontmatter.pubDate ? (
+        <h3>{format(frontmatter.pubDate, 'PPPP')}</h3>
+      ) : null
+    }
     <p>{frontmatter.description.toString()}</p>
     <slot />
   </div>
