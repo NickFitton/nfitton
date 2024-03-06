@@ -43,6 +43,16 @@ header {
     }
   }
 }
+@media only screen and (max-width: 992px) {
+  .content header div.title {
+    h1,
+    h2,
+    p {
+      white-space: unset;
+      text-align: left;
+    }
+  }
+}
 
 section.info {
   display: grid;
