@@ -43,18 +43,6 @@ header {
     }
   }
 }
-@media only screen and (max-width: 992px) {
-  .content header div.title {
-    max-height: unset;
-    h1,
-    h2,
-    p {
-      white-space: unset;
-      text-align: left;
-    }
-  }
-}
-
 section.info {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -188,6 +176,19 @@ section.info {
 }
 
 @media only screen and (max-width: 992px) {
+  .content {
+    margin: 1.5rem;
+    header div.title {
+      max-height: unset;
+      h1,
+      h2,
+      p {
+        white-space: unset;
+        text-align: left;
+      }
+    }
+  }
+
   header {
     flex-flow: column;
     div.title {
