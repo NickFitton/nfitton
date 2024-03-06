@@ -45,6 +45,7 @@ header {
 }
 @media only screen and (max-width: 992px) {
   .content header div.title {
+    max-height: unset;
     h1,
     h2,
     p {
