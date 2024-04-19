@@ -1,0 +1,63 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "893B6Q7U63.Ovo",
+          "893B6Q7U63.Ovo.uat"
+        ],
+        "components": [
+          {
+            "/": "/payments/direct-debit/change-amount"
+          },
+          {
+            "/": "/payments/direct-debit/change-date"
+          },
+          {
+            "/": "/payments/direct-debit/setup"
+          },
+          {
+            "/": "/payments/make-card-payment"
+          },
+          {
+            "/": "/payments/refunds"
+          },
+          {
+            "/": "/meter-readings"
+          },
+          {
+            "/": "/smart-booking"
+          },
+          {
+            "/": "/refer"
+          },
+          {
+            "/": "/payments/make-card-payment/app/confirm"
+          },
+          {
+            "/": "/payments/make-card-payment/app/cancelled"
+          },
+          {
+            "/": "/payments/make-card-payment/app/error"
+          },
+          {
+            "/": "/payments/make-card-payment/app/failure"
+          },
+          {
+            "/": "/payments/make-card-payment/app/pending"
+          },
+          {
+            "/": "/profile"
+          },
+          {
+            "/": "/profile/partners/tesco",
+            "?": {
+              "clubcard-link": "error"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
