@@ -4,7 +4,6 @@ import './_root.css';
 import { experience, sideProjects } from './content';
 import { getCollection } from 'astro:content';
 const allSkills = await getCollection('skills');
-const allBlogs = await getCollection('blog');
 const buildTags = (body: string) =>
   body
     .split('\n')
@@ -183,7 +182,7 @@ const buildTags = (body: string) =>
                   <a class="left" href={url}>
                     <h4>{name}</h4>
                   </a>
-                  <div>
+                  <div class="right">
                     {purpose.map((paragraph) => (
                       <p>{paragraph}</p>
                     ))}
