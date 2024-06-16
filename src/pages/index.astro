@@ -1,11 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import './_root.css';
-import { experience } from './content';
+import { experience, sideProjects } from './content';
 import { getCollection } from 'astro:content';
 const allSkills = await getCollection('skills');
 const allBlogs = await getCollection('blog');
-const yolBlogs = allBlogs.filter(({ data: { tags } }) => tags.includes('yol'));
 const buildTags = (body: string) =>
   body
     .split('\n')
@@ -170,24 +169,24 @@ const buildTags = (body: string) =>
           </div>
         </div>
         <div>
-          <h3>Year of Learning</h3>
+          <h3>Side Projects</h3>
           <p>
-            For every month of 2024 I'm learning the basics of a new/old
-            langange and posting about it as I go!
+            In my free time, I like to write up side projects. This ranges from
+            solving problems in my work life, trying out different
+            frameworks/ideologies, or PoC's of projects that could become
+            secondary income streams.
           </p>
           {
-            yolBlogs.map((post) => (
+            sideProjects.map(({ name, url, purpose }) => (
               <div class="skill">
                 <div class="skill-content">
-                  <a class="left" href={`/blog/${post.slug}`}>
-                    <h4>{post.data.title}</h4>
+                  <a class="left" href={url}>
+                    <h4>{name}</h4>
                   </a>
-                  <div class="skill-tags">
-                    {post.data.tags
-                      .filter((tag) => tag !== 'yol')
-                      .map((tag) => (
-                        <span class="skill-tag">{tag}</span>
-                      ))}
+                  <div>
+                    {purpose.map((paragraph) => (
+                      <p>{paragraph}</p>
+                    ))}
                   </div>
                 </div>
               </div>

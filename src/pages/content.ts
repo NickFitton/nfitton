@@ -55,3 +55,14 @@ export const skillCategories = [
     ],
   },
 ];
+
+export const sideProjects = [
+  {
+    name: "Git gif",
+    url: "https://git-gif.vercel.app",
+    purpose: [
+      'When creating PR\'s I will often upload media to show the visual changes I\'ve made. This will usually consist of GIFs that I manually converted with ffmpeg.',
+      'Whilst this process works, having to remember the incatations to appease ffmpeg can be a pain. Instead, I wrote this project to take videos and convert them to gifs.'
+    ]
+  }
+]
