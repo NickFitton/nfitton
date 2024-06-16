@@ -1,9 +1,20 @@
 export const experience = [
   {
+    company: 'Humaans.io',
+    link: 'https://humaans.io',
+    from: '2024',
+    to: 'present',
+    content: [
+      'Working at Humaans is a very unique experience. I am able to implement changes that significatly improve the work life of others.',
+      'At Humaans we aspire to write safe code quickly, leveraging ReScript to extingush a plethora of issues we could experience in a vanilla JS application.',
+    ],
+    tags: ['React', 'ReScript', 'Relay', 'Feathers.js', 'BigQuery'],
+  },
+  {
     company: 'OVO Energy',
     link: 'https://ovo.com',
     from: '2021',
-    to: 'present',
+    to: '2024',
     content: [
       'At OVO I’ve worn many hats, from junior React Native dev to interim Engineering Manager to Senior Platforms Lead. I’ve been able to work on a plethora of React based projects including React Native & NextJS.',
       'During my tenure, I’ve successfully managed projects, built new integrations, and investigated innovative solutions to challenges in the energy industry.',
