@@ -1,16 +1,20 @@
 ---
-title: Testing Frameworks
-description: Testing is important to me and I believe a lot of enterprises manage their test processes wrong. Nonetheless, I have worked with a selection of testing systems.
+title: Testing and validation
+description: Experience with automated testing and production instrumentation across web and mobile applications.
 ---
 
-# Warning
+## Mobile testing
 
-Thanks for clicking this link, sadly, I haven't migrated all my existing content to skills pages yet, but check back soon to learn more about my opinions/experience in backend engineering.
+My React Native work at OVO included working on Detox end-to-end tests and investigating their reliability in CI.
 
-## Jest
+## Production instrumentation
 
-## Detox
+For OVO notifications, I added analytics covering message delivery and the customer actions that followed. This showed an increase in on-time meter-reading completion after reminders launched.
 
-## Cypress
+[Read the notification case study](/work/useful-mobile-notifications/).
 
-## Play
+## Web testing
+
+At Post-Quantum, I worked with automated testing tools including Protractor and Cypress.
+
+[Back to my profile](/#experience)

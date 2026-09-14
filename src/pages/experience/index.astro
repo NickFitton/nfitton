@@ -1,32 +1,22 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import './_experience.css';
-import { history } from './experience';
+import Career from '../../components/Career.astro';
+import '../_root.css';
 ---
 
-<Layout title="Experience">
-  <main>
-    <header>
-      <a href="/">← Go Back</a>
-      <h1>Experience</h1>
-      <div></div>
-    </header>
-    <section aria-label="experience">
-      {
-        history.map(({ company, duration, topics }) => (
-          <article>
-            <h2>{company + ' ' + duration}</h2>
-            {topics.map(({ title, content }) => (
-              <div>
-                <h3>{title}</h3>
-                {content.map((para) => (
-                  <p>{para}</p>
-                ))}
-              </div>
-            ))}
-          </article>
-        ))
-      }
-    </section>
-  </main>
+<Layout title="Experience | Nicholas Fitton">
+  <div class="profile">
+    <nav class="navigation" aria-label="Main navigation">
+      <a href="/">← Nicholas Fitton</a><a
+        href="/nicholas-fitton-cv.pdf"
+        download>Download CV ↓</a>
+    </nav><main>
+      <header class="detail-header">
+        <p class="eyebrow">Career & education</p><h1>Experience</h1>
+      </header><Career />
+    </main><footer class="footer">
+      <a href="/#work">Explore selected work →</a><a
+        href="mailto:resume@nfitton.com">resume@nfitton.com</a>
+    </footer>
+  </div>
 </Layout>

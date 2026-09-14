@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { caseStudies } from '../../data/profile';
+import '../_root.css';
+export function getStaticPaths() {
+  return caseStudies.map((study) => ({
+    params: { slug: study.slug },
+    props: { study },
+  }));
+}
+const { study } = Astro.props;
+---
+
+<Layout title={`${study.title} | Nicholas Fitton`} description={study.summary}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="profile">
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="wordmark" href="/" aria-label="Nicholas Fitton home"
+        >nf<span>.</span></a
+      ><div>
+        <a href="/#work">All selected work</a><a
+          href="mailto:resume@nfitton.com">Contact ↗</a>
+      </div>
+    </nav><main id="main">
+      <header class="detail-header">
+        <a class="text-link" href="/#work">← Back to selected work</a><p
+          class="eyebrow"
+        >
+          {study.company} / Case study
+        </p><h1>{study.title}</h1><p
+          class="detail-copy"
+          style="padding-bottom:0"
+        >
+          {study.summary}
+        </p><div class="detail-facts"><span>{study.discipline}</span></div>
+      </header><div class="detail-copy">
+        <p class="outcome"><span>Outcome</span>{study.outcome}</p>{
+          study.sections.map((section) => (
+            <section>
+              <h2>{section.title}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </section>
+          ))
+        }
+      </div>
+    </main><footer class="footer">
+      <a href="/#work">← More selected work</a><a
+        href="/nicholas-fitton-cv.pdf"
+        download>Download CV ↓</a>
+    </footer>
+  </div>
+</Layout>

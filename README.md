@@ -1,54 +1,36 @@
-# Astro Starter Kit: Basics
+# Nicholas Fitton’s personal site
+
+An Astro site presenting engineering leadership experience, selected case studies, career history and a downloadable CV.
+
+## Local development
 
 ```sh
-npm create astro@latest -- --template basics
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Run `pnpm build` to generate the static site in `dist/`.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Updating content
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- `src/pages/index.astro`: introduction, mentoring, technical strengths and contact details.
+- `src/data/profile.ts`: case studies, shared by the homepage and `/work/[slug]/`.
+- `src/data/career.json`: career history and CV achievement bullets.
+- `src/components/Career.astro`: shared career and education presentation.
+- `src/pages/_root.css`: responsive black and purple profile styling.
 
-## 🚀 Project Structure
+The existing `/experience/` route uses the same career content as the homepage.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Regenerating the CV
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+The two-page PDF is checked in at `public/nicholas-fitton-cv.pdf`, so ordinary site builds do not require Python.
+
+```sh
+python3 -m venv /tmp/nfitton-cv-env
+/tmp/nfitton-cv-env/bin/pip install -r scripts/requirements-cv.txt
+/tmp/nfitton-cv-env/bin/python scripts/build_cv.py
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The generator reads employment data from `src/data/career.json`. The introduction, skills and education are in `scripts/build_cv.py`; keep them aligned with the site when editing. Review both rendered pages after regeneration and confirm the download still has two pages.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The pinned legacy Astro formatter can alter nested JSX content. Inspect its output before accepting formatting changes to Astro templates.
