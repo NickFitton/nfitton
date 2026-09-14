@@ -15,6 +15,12 @@
 .profile h1,
 .profile h2,
 .profile h3,
+.profile .hero-title {
+  font-family: RobotoSlab, Georgia, serif;
+}
+.profile h1,
+.profile h2,
+.profile h3,
 .profile p {
   margin: 0;
 }
