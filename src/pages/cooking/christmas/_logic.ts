@@ -1,4 +1,4 @@
-import type { Recipe, Recipes, Step } from './content';
+import type { Recipe, Recipes, Step } from './_content';
 
 export type Task = {
   group: string;

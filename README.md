@@ -4,6 +4,14 @@ An Astro site presenting engineering leadership experience, selected case studie
 
 ## Local development
 
+Use **Node.js 26.8.2** and **pnpm 12.4.1**. Node is pinned in `.node-version` and `.nvmrc`; pnpm is pinned in `package.json`. The Node pin follows the latest Current release, rather than the LTS line.
+
+With a Node version manager, run `fnm use --install-if-missing` or `nvm install` from the repository. Then install the pinned package manager if needed:
+
+```sh
+npm install --global pnpm@12.4.1
+```
+
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev
@@ -33,4 +41,10 @@ python3 -m venv /tmp/nfitton-cv-env
 
 The generator reads employment data from `src/data/career.json`. The introduction, skills and education are in `scripts/build_cv.py`; keep them aligned with the site when editing. Review both rendered pages after regeneration and confirm the download still has two pages.
 
-The pinned legacy Astro formatter can alter nested JSX content. Inspect its output before accepting formatting changes to Astro templates.
+## Dependency maintenance
+
+The site uses Astro 7 and content loaders configured in `src/content.config.ts`. Collection routes use entry IDs, preserving custom card slugs.
+
+`pnpm-workspace.yaml` enforces the Node/pnpm requirements and permits esbuild’s installation script. Commit `pnpm-lock.yaml` with dependency updates and use `pnpm install --frozen-lockfile` in CI. Build with `pnpm build`; preview the result with `pnpm preview`.
+
+When updating Node, keep `.node-version`, `.nvmrc`, `package.json` and these instructions aligned. Update the `packageManager` field and pnpm engine requirement together when changing pnpm. The CV generator’s ReportLab dependency is separately pinned in `scripts/requirements-cv.txt`.
