@@ -1,0 +1,47 @@
+[
+  {
+    "company": "Humaans",
+    "dates": "May 2024 - present",
+    "role": "Senior Full-stack Engineer",
+    "description": "Leading full-stack product work across payroll integrations and audit logging, from technical decisions and delivery planning to rollout and customer conversations.",
+    "progression": [],
+    "bullets": [
+      "Led the Check payroll integration from provider assessment through rollout, coordinating four engineers with varying involvement across the project.",
+      "Worked with sales to understand US customer needs; selected Check for its data-model fit and webhook infrastructure, then integrated payroll across profiles, compensation and documents.",
+      "Broke implementation into achievable milestones, distributed work and supported sales calls with technical and payroll expertise.",
+      "Contributed to audit-log data design and led the transactional outbox decision, tying pending audit events to application changes in one database transaction. The outbox buffered events during a production BigQuery outage."
+    ]
+  },
+  {
+    "company": "OVO",
+    "dates": "February 2021 - May 2024",
+    "role": "Software Engineer (S4) · Frontend Platforms squad lead",
+    "description": "Progressed through S2, S3 and S4. Served as interim engineering manager for the first quarter at S4, leading a team of four including myself while continuing to contribute as an engineer.",
+    "progression": [
+      "S4: June 2023 - May 2024",
+      "S3: January 2022 - June 2023",
+      "S2: February 2021 - January 2022"
+    ],
+    "bullets": [
+      "Led mobile bill and meter-reading notifications from proof of concept to production, adapting the solution around Salesforce so copywriters could manage messages.",
+      "Coordinated engineers, designers, copywriters and Salesforce representatives; planned implementation and allocated work around developers’ strengths.",
+      "Instrumented notification delivery and subsequent customer journeys. Analytics showed increased on-time meter-reading completion after reminders launched.",
+      "As interim engineering manager (approximately June-August 2023), ran one-to-ones and aligned work with developers’ career goals.",
+      "Mentored a junior React Native engineer through whiteboarding and pairing; they progressed to independently tackling technical work including graphing-library refactoring."
+    ]
+  },
+  {
+    "company": "Post-Quantum",
+    "dates": "May 2017 - February 2021",
+    "role": "Developer",
+    "description": "Built a foundation in full-stack engineering on cybersecurity products involving biometrics and encryption. Worked across frontend applications, backend services and automated testing.",
+    "progression": [
+      "Developer: May 2019 - February 2021",
+      "Part Time Backend Developer: October 2018 - May 2019",
+      "Intern: May 2017 - October 2018"
+    ],
+    "bullets": [
+      "Worked on cybersecurity products involving biometrics and encryption, using Angular, Vue, Java/Spring, Groovy and automated testing tools."
+    ]
+  }
+]

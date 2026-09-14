@@ -1,16 +1,23 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = 'Nicholas Fitton is a senior full-stack engineer with project leadership and engineering management experience. Open to engineering lead roles.',
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Nick Fitton - Senior Software Engineer" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />

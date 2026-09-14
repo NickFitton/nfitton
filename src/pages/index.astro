@@ -1,198 +1,173 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Career from '../components/Career.astro';
+import { caseStudies } from '../data/profile';
 import './_root.css';
-import { experience, sideProjects } from './content';
-import { getCollection } from 'astro:content';
-const allSkills = await getCollection('skills');
-const buildTags = (body: string) =>
-  body
-    .split('\n')
-    .filter((line) => line.startsWith('## '))
-    .map((line) => line.replace('## ', ''))
-    .map((tag) => ({
-      tag,
-      id: tag.toLowerCase().replaceAll(' ', '-').replaceAll('.', ''),
-    }));
 ---
 
-<Layout title="Nick Fitton">
-  <div class="content">
-    <header>
-      <div class="title">
-        <h1>Nicholas Fitton</h1>
-        <h2>Senior software engineer</h2>
-        <p>Working in Team Fresh @ Humaans</p>
+<Layout
+  title="Nicholas Fitton | Full-stack engineer & engineering lead candidate"
+>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="profile">
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="wordmark" href="/" aria-label="Nicholas Fitton home"
+        >nf<span>.</span></a
+      ><div>
+        <a href="#work">Selected work</a><a href="#experience">Experience</a><a
+          href="#contact">Contact ↗</a>
       </div>
-      <div class="about">
-        <p>
-          I am a senior engineer with a passion for creating innovative
-          solutions for greater good. With over 7 years of experience, I have
-          managed projects, built integrations, and solved complex problems
-          using technologies such as React, React Native, Gatsby, Next.js, and
-          more. I have a proven track record of driving results and achieving
-          impact in my previous roles, including projects to implement push
-          notifications, optimize app updates, and create help sections from
-          scratch.
+    </nav>
+    <main id="main">
+      <header class="hero">
+        <p class="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span> Open to
+          engineering lead roles
         </p>
-      </div>
-    </header>
-    <section class="info">
-      <div class="left-column">
-        <div>
-          <h3>Experience</h3>
-          {
-            experience.map(({ company, link, from, to, content }) => (
-              <div class="headed-section">
-                <a class="left" href={link} target="_blank">
-                  <h4>{company}</h4>
-                  <p>
-                    {from} - {to}
-                  </p>
-                </a>
-                <div class="right">
-                  {content.map((paragraph) => (
-                    <p>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-            ))
-          }
-        </div>
-        <div>
-          <h3>Skills</h3>
-          <p>
-            An arbitrary list of languages and framesworks I've worked with,
-            because everyone seems to do it and I don't want to miss out!
-          </p>
-          {
-            allSkills.map((skill) => (
-              <div class="skill">
-                <div class="skill-content">
-                  <a class="left" href={`/skills/${skill.slug}`}>
-                    <h4>{skill.data.title}</h4>
-                  </a>
-                  <div class="right">
-                    <p>{skill.data.description}</p>
-                  </div>
-                </div>
-                <div class="skill-tags">
-                  {buildTags(skill.body).map(({ id, tag }) => (
-                    <a class="skill-tag" href={`/skills/${skill.slug}#${id}`}>
-                      {tag}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-      <div class="right-column">
-        <div>
-          <h3>Expertise</h3>
-          <div>
-            <div class="headed-section">
-              <div class="left">
-                <h4>Engineering Management</h4>
-              </div>
-              <div class="right">
-                <p>
-                  In my tenure at OVO Energy, I undertook the role of a SEM for
-                  a quarter, leading a compact team of four developers,
-                  including myself. My responsibilities extended beyond project
-                  management to encompass effective inter-team communication and
-                  maintaining my contributions as an Engineer.
-                </p>
-                <p>
-                  During this period, we delivered key projects, including the
-                  development and launch of a new app for support teams, a
-                  successful study to simplify a project by removing Redux, and
-                  the implementation of a new screen view type across various
-                  project journeys, which was well-received by customers and
-                  developers.
-                </p>
-              </div>
-            </div>
-            <div class="headed-section">
-              <div class="left">
-                <h4>Software Engineering</h4>
-              </div>
-              <div class="right">
-                <p>
-                  I am passionate about developing tooling that empowers other
-                  developers to achieve remarkable results efficiently. A recent
-                  focus of mine has been optimizing Detox test runs on CI
-                  machines. Previously, these tests took over 90 minutes and
-                  were prone to failure due to flakey tests and a challenging
-                  developer experience (DX) stemming from team inexperience.
-                </p>
-                <p>
-                  Addressing these issues was an engaging and rewarding journey.
-                  I led the investigation and concluded with an e2e test suite
-                  that didn't reduce coverage, reduced test time and test flake.
-                </p>
-              </div>
-            </div>
-            <div class="headed-section">
-              <div class="left">
-                <h4>Mentoring</h4>
-              </div>
-              <div class="right">
-                <p>
-                  As a mentor at OVO Energy, I enjoy sharing my knowledge and
-                  expertise with fellow team members, helping them develop their
-                  skills and achieve their career goals. I also actively mentor
-                  externally, providing guidance and support to aspiring
-                  software engineers in the broader tech community. I believe in
-                  the power of mentorship in fostering growth and empowering
-                  others to reach their full potential.
-                </p>
-              </div>
-            </div>
-            <div class="headed-section">
-              <div class="left">
-                <h4>Cooking</h4>
-              </div>
-              <div class="right">
-                <p>
-                  In my off time, I love to cook, whether it be an intricate
-                  meal for two or a large dinner for many. I find my development
-                  experience helps me manage the multitasking of cooking a large
-                  meal, for example, I recently cooked christmas dinner for 7
-                  and you can find my process for managing it <a
-                    href="/cooking/christmas">here</a
-                  >.
-                </p>
-              </div>
-            </div>
+        <h1>Nicholas Fitton<span class="accent">.</span></h1>
+        <p class="hero-title">Senior full-stack engineer</p>
+        <div class="hero-bottom">
+          <div class="intro">
+            <p>
+              I’m a senior full-stack engineer with experience leading projects
+              and managing a small engineering team. I turn broad product
+              problems into practical plans, work with stakeholders to shape
+              solutions, and deliver alongside the team.
+            </p><p>
+              I’m looking for an engineering lead role, particularly with a
+              company improving people’s working lives or advancing a positive
+              environmental mission.
+            </p>
+          </div><div class="hero-actions">
+            <a class="button" href="mailto:resume@nfitton.com"
+              >Let’s talk <span aria-hidden="true">↗</span></a
+            ><a class="text-link" href="/nicholas-fitton-cv.pdf" download
+              >Download CV <span class="file-label">PDF · 2 pages</span>
+              <span aria-hidden="true">↓</span></a
+            ><p class="location">
+              Chepstow, South Wales<br />Remote · Bristol · Cardiff
+            </p>
           </div>
         </div>
-        <div>
-          <h3>Side Projects</h3>
-          <p>
-            In my free time, I like to write up side projects. This ranges from
-            solving problems in my work life, trying out different
-            frameworks/ideologies, or PoC's of projects that could become
-            secondary income streams.
-          </p>
+      </header>
+      <section id="work" class="section">
+        <div class="section-heading">
+          <h2>Selected work</h2>
+        </div><div class="case-list">
           {
-            sideProjects.map(({ name, url, purpose }) => (
-              <div class="skill">
-                <div class="skill-content">
-                  <a class="left" href={url} target="_blank">
-                    <h4>{name}</h4>
-                  </a>
-                  <div class="right">
-                    {purpose.map((paragraph) => (
-                      <p>{paragraph}</p>
-                    ))}
+            caseStudies.map((study, index) => (
+              <article class="case-card">
+                  <div class="case-meta">
+                    <span class="case-number">0{index + 1}</span>
+                    <p class="eyebrow">{study.company}</p>
                   </div>
-                </div>
-              </div>
+                  <div>
+                    <h3>{study.title}</h3>
+                    <p>{study.summary}</p>
+                    <p class="outcome">
+                      <span>Outcome</span>
+                      {study.outcome}
+                    </p>
+                      <a class="text-link" href={`/work/${study.slug}/`}>
+                        Read case study <span aria-hidden="true">→</span>
+                      </a>
+                  </div>
+              </article>
             ))
           }
         </div>
-      </div>
-    </section>
+      </section>
+      <section class="section leadership" aria-labelledby="leadership-title">
+        <div>
+          <h2 id="leadership-title">Management & mentoring</h2>
+        </div><div>
+          <p>
+            As interim engineering manager at OVO, I led a team of four
+            including myself while remaining hands-on. In one-to-ones, I
+            connected project work with each developer’s interests and career
+            goals.
+          </p><p>
+            With a junior engineer new to React Native, I chose work just beyond
+            their current experience. We used whiteboarding to make mathematical
+            problems tangible, then paired with them driving the implementation
+            and me helping them stay on course.
+          </p><p class="outcome">
+            <span>Outcome</span>They went on to independently tackle more
+            technical projects, including refactoring our graphing-library
+            usage.
+          </p>
+        </div>
+      </section>
+      <section id="experience" class="section">
+        <div class="section-heading">
+          <h2>Experience</h2>
+        </div><Career />
+      </section>
+      <section
+        class="section capabilities"
+        aria-labelledby="capabilities-title"
+      >
+        <div>
+          <h2 id="capabilities-title">Technical skills</h2>
+        </div><div class="capability-grid">
+          <div>
+            <h3>Product engineering</h3><p>
+              React, React Native, ReScript and TypeScript. Building interfaces
+              and application logic together, with experience across web and
+              mobile.
+            </p>
+          </div><div>
+            <h3>Integrations & reliability</h3><p>
+              APIs, webhooks, data modelling and transactional outboxes.
+              Connecting services while accounting for failures and the people
+              using them.
+            </p>
+          </div><div>
+            <h3>Planning & delivery</h3><p>
+              Provider evaluation, achievable milestones, stakeholder
+              conversations and work allocation that reflects the team’s
+              strengths.
+            </p>
+          </div><div>
+            <h3>Engineering foundations</h3><p>
+              Experience with Relay, Feathers.js, BigQuery, Java/Spring and
+              automated testing. I seek infrastructure specialists’ input where
+              operational decisions need deeper expertise.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section personal" aria-labelledby="beyond-title">
+        <div>
+          <h2 id="beyond-title">Projects & interests</h2>
+        </div><div>
+          <p>
+            I built <a href="https://git-gif.vercel.app">Git gif</a> to turn
+            videos into GIFs for pull requests, making it easier to show visual
+            changes.
+          </p><p>
+            Away from code, I enjoy cooking, from a meal for two to a table full
+            of people. My <a href="/cooking/christmas/"
+              >Christmas dinner planner</a
+            > brings a little engineering organisation to the kitchen.
+          </p>
+        </div>
+      </section>
+      <section id="contact" class="contact section">
+        <h2>Contact</h2><p>
+          I’m open to conversations about engineering lead roles. I prefer
+          remote work with occasional London get-togethers, and I’m also open to
+          full-time office-based roles in Bristol or Cardiff.
+        </p><div class="contact-links">
+          <a class="contact-email" href="mailto:resume@nfitton.com"
+            >resume@nfitton.com <span aria-hidden="true">↗</span></a
+          ><a class="text-link" href="/nicholas-fitton-cv.pdf" download
+            >Download CV <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+    </main><footer class="footer">
+      <span>Nicholas Fitton</span><span>Chepstow, South Wales</span><a
+        href="#main">Back to top ↑</a>
+    </footer>
   </div>
 </Layout>

@@ -1,54 +1,50 @@
-# Astro Starter Kit: Basics
+# Nicholas Fitton’s personal site
+
+An Astro site presenting engineering leadership experience, selected case studies, career history and a downloadable CV.
+
+## Local development
+
+Use **Node.js 24.21.0** and **pnpm 12.4.1**. Node is pinned in `.node-version` and `.nvmrc`; pnpm is pinned in `package.json`. The `engines.node` setting selects Node 24 for Vercel; local version-manager files pin the latest Node 24 patch release.
+
+With a Node version manager, run `fnm use --install-if-missing` or `nvm install` from the repository. Then install the pinned package manager if needed:
 
 ```sh
-npm create astro@latest -- --template basics
+npm install --global pnpm@12.4.1
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Run `pnpm build` to generate the static site in `dist/`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Updating content
 
-Any static assets, like images, can be placed in the `public/` directory.
+- `src/pages/index.astro`: introduction, mentoring, technical strengths and contact details.
+- `src/data/profile.ts`: case studies, shared by the homepage and `/work/[slug]/`.
+- `src/data/career.json`: career history and CV achievement bullets.
+- `src/components/Career.astro`: shared career and education presentation.
+- `src/pages/_root.css`: responsive black and purple profile styling.
 
-## 🧞 Commands
+The existing `/experience/` route uses the same career content as the homepage.
 
-All commands are run from the root of the project, from a terminal:
+## Regenerating the CV
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+The two-page PDF is checked in at `public/nicholas-fitton-cv.pdf`, so ordinary site builds do not require Python.
 
-## 👀 Want to learn more?
+```sh
+python3 -m venv /tmp/nfitton-cv-env
+/tmp/nfitton-cv-env/bin/pip install -r scripts/requirements-cv.txt
+/tmp/nfitton-cv-env/bin/python scripts/build_cv.py
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The generator reads employment data from `src/data/career.json`. The introduction, skills and education are in `scripts/build_cv.py`; keep them aligned with the site when editing. Review both rendered pages after regeneration and confirm the download still has two pages.
+
+## Dependency maintenance
+
+The site uses Astro 7 and content loaders configured in `src/content.config.ts`. Collection routes use entry IDs, preserving custom card slugs.
+
+`pnpm-workspace.yaml` enforces the Node/pnpm requirements and permits esbuild’s installation script. Commit `pnpm-lock.yaml` with dependency updates and use `pnpm install --frozen-lockfile` in CI. Build with `pnpm build`; preview the result with `pnpm preview`.
+
+When updating Node, keep `.node-version`, `.nvmrc`, `package.json` and these instructions aligned. Update the `packageManager` field and pnpm engine requirement together when changing pnpm. The CV generator’s ReportLab dependency is separately pinned in `scripts/requirements-cv.txt`.

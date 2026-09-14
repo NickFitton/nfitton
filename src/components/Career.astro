@@ -1,0 +1,36 @@
+---
+import { career } from '../data/profile';
+---
+
+<div class="career">
+  {
+    career.map((job) => (
+      <article class="career-row">
+          <div class="career-meta">
+              <h3>{job.company}</h3>
+              <p>{job.dates}</p>
+          </div>
+          <div>
+            <p class="career-role">{job.role}</p>
+            <p class="career-description">{job.description}</p>
+            {job.progression.length > 0 && (
+              <ul class="progression">
+                {job.progression.map((role) => (
+                  <li>{role}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+      </article>
+    ))
+  }
+</div>
+<div class="education">
+  <h3>Middlesex University</h3><p>
+    Bachelor’s degree, Computer Science · First class, with internship year ·
+    2015–2019
+  </p><p>
+    Student Learning Assistant · September 2016–May 2017 and October 2018–May
+    2019. Supported first- and second-year Computer Science teaching.
+  </p>
+</div>
