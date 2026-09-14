@@ -4,7 +4,7 @@ An Astro site presenting engineering leadership experience, selected case studie
 
 ## Local development
 
-Use **Node.js 26.8.2** and **pnpm 12.4.1**. Node is pinned in `.node-version` and `.nvmrc`; pnpm is pinned in `package.json`. The Node pin follows the latest Current release, rather than the LTS line.
+Use **Node.js 24.21.0** and **pnpm 12.4.1**. Node is pinned in `.node-version` and `.nvmrc`; pnpm is pinned in `package.json`. The `engines.node` setting selects Node 24 for Vercel; local version-manager files pin the latest Node 24 patch release.
 
 With a Node version manager, run `fnm use --install-if-missing` or `nvm install` from the repository. Then install the pinned package manager if needed:
 
