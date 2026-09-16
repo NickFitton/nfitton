@@ -40,50 +40,6 @@ export const caseStudies = [
     ],
   },
   {
-    slug: 'loom',
-    company: 'Personal project',
-    discipline: 'Agent orchestration & product design',
-    title: 'A controlled workflow for coding agents',
-    summary:
-      'An Electron app in active development that turns my preferred way of working with coding agents into a repeatable, human-approved process outside the terminal.',
-    outcome:
-      'A working Electron application that runs repository-based tasks through clarification, shaping, implementation and human-plus-agent review.',
-    sections: [
-      {
-        title: 'Encoding a process I already used',
-        paragraphs: [
-          'I use Codex and Claude for different purposes, but found myself taking both through the same steps to solve a problem. I started building Loom to encode that process in a UI, use multiple models from one app and work outside the terminal.',
-        ],
-      },
-      {
-        title: 'From a repository to a shaped task',
-        paragraphs: [
-          'The Electron app can open an existing local repository or pull one from GitHub through the local gh CLI. From there, I can create a task that moves through clarification — or “grilling” — shaping, implementation and review. For a larger change, I can instead create a higher-order plan.',
-          'During clarification, the agent resolves ambiguity and proposes concrete implementation decisions: for example, whether an updatedAt value changes with the whole object and whether only the server can set it. Implementation cannot begin until I explicitly approve the shaped approach.',
-        ],
-      },
-      {
-        title: 'Keep review in the loop',
-        paragraphs: [
-          'Reviewing agents assess the implementer’s changes and leave comments. I can inspect, accept or reject those comments, and add comments of my own. The work can return through the loop until it is complete, combining agent review with a human decision at each point that needs one.',
-        ],
-      },
-      {
-        title: 'Model flexibility from one interface',
-        paragraphs: [
-          'Loom uses Pi as its agent connector. Codex and Claude are both working through the same non-terminal interface today. Pi may make broader model compatibility possible, but those two are the integrations I have confirmed.',
-        ],
-      },
-      {
-        title: 'Planned next phase: remote control without losing oversight',
-        paragraphs: [
-          'The website and server are planned, not implemented. The aim is for a separate machine the user controls to perform the work while they use their phone to start tasks, answer questions, monitor progress and review changes.',
-          'That remote experience is also planned to use push notifications for timely prompts and WebSocket events for live progress. It extends the same principle as the desktop workflow: make delegation convenient without giving up agreement, visibility or review.',
-        ],
-      },
-    ],
-  },
-  {
     slug: 'useful-mobile-notifications',
     company: 'OVO',
     discipline: 'Stakeholder alignment & mobile delivery',
