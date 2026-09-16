@@ -5,17 +5,19 @@ import { caseStudies } from '../data/profile';
 import './_root.css';
 ---
 
-<Layout
-  title="Nicholas Fitton | Full-stack engineer & engineering lead candidate"
->
-  <a class="skip-link" href="#main">Skip to content</a>
+<Layout title="Nicholas Fitton | Full-stack engineer & engineering lead candidate">
+  <a class="skip-link" href="#main">
+    Skip to content
+  </a>
   <div class="profile">
     <nav class="navigation" aria-label="Main navigation">
-      <a class="wordmark" href="/" aria-label="Nicholas Fitton home"
-        >nf<span>.</span></a
-      ><div>
-        <a href="#work">Selected work</a><a href="#experience">Experience</a><a
-          href="#contact">Contact ↗</a>
+      <a class="wordmark" href="/" aria-label="Nicholas Fitton home">
+        nf<span>.</span>
+      </a>
+      <div>
+        <a href="#work">Selected work</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact ↗</a>
       </div>
     </nav>
     <main id="main">
@@ -24,7 +26,9 @@ import './_root.css';
           <span class="status-dot" aria-hidden="true"></span> Open to
           engineering lead roles
         </p>
-        <h1>Nicholas Fitton<span class="accent">.</span></h1>
+        <h1>
+          Nicholas Fitton<span class="accent">.</span>
+        </h1>
         <p class="hero-title">Senior full-stack engineer</p>
         <div class="hero-bottom">
           <div class="intro">
@@ -33,19 +37,25 @@ import './_root.css';
               and managing a small engineering team. I turn broad product
               problems into practical plans, work with stakeholders to shape
               solutions, and deliver alongside the team.
-            </p><p>
+            </p>
+            <p>
               I’m looking for an engineering lead role, particularly with a
               company improving people’s working lives or advancing a positive
               environmental mission.
             </p>
-          </div><div class="hero-actions">
-            <a class="button" href="mailto:resume@nfitton.com"
-              >Let’s talk <span aria-hidden="true">↗</span></a
-            ><a class="text-link" href="/nicholas-fitton-cv.pdf" download
-              >Download CV <span class="file-label">PDF · 2 pages</span>
-              <span aria-hidden="true">↓</span></a
-            ><p class="location">
-              Chepstow, South Wales<br />Remote · Bristol · Cardiff
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="mailto:resume@nfitton.com">
+              Let’s talk <span aria-hidden="true">↗</span>
+            </a>
+            <a class="text-link" href="/nicholas-fitton-cv.pdf" download>
+              Download CV <span class="file-label">PDF · 2 pages</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+            <p class="location">
+              Chepstow, South Wales
+              <br />
+              Remote · Bristol · Cardiff
             </p>
           </div>
         </div>
@@ -53,45 +63,47 @@ import './_root.css';
       <section id="work" class="section">
         <div class="section-heading">
           <h2>Selected work</h2>
-        </div><div class="case-list">
-          {
-            caseStudies.map((study, index) => (
-              <article class="case-card">
-                  <div class="case-meta">
-                    <span class="case-number">0{index + 1}</span>
-                    <p class="eyebrow">{study.company}</p>
-                  </div>
-                  <div>
-                    <h3>{study.title}</h3>
-                    <p>{study.summary}</p>
-                    <p class="outcome">
-                      <span>Outcome</span>
-                      {study.outcome}
-                    </p>
-                      <a class="text-link" href={`/work/${study.slug}/`}>
-                        Read case study <span aria-hidden="true">→</span>
-                      </a>
-                  </div>
-              </article>
-            ))
-          }
+        </div>
+        <div class="case-list">
+          {caseStudies.map((study, index) => (
+            <article class="case-card">
+              <div class="case-meta">
+                <span class="case-number">0{index + 1}</span>
+                <p class="eyebrow">{study.company}</p>
+              </div>
+              <div>
+                <h3>{study.title}</h3>
+                <p>{study.summary}</p>
+                <p class="outcome">
+                  <span>Outcome</span>
+                  {study.outcome}
+                </p>
+                <a class="text-link" href={`/work/${study.slug}/`}>
+                  Read case study <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
       <section class="section leadership" aria-labelledby="leadership-title">
         <div>
           <h2 id="leadership-title">Management & mentoring</h2>
-        </div><div>
+        </div>
+        <div>
           <p>
             As interim engineering manager at OVO, I led a team of four
             including myself while remaining hands-on. In one-to-ones, I
             connected project work with each developer’s interests and career
             goals.
-          </p><p>
+          </p>
+          <p>
             With a junior engineer new to React Native, I chose work just beyond
             their current experience. We used whiteboarding to make mathematical
             problems tangible, then paired with them driving the implementation
             and me helping them stay on course.
-          </p><p class="outcome">
+          </p>
+          <p class="outcome">
             <span>Outcome</span>They went on to independently tackle more
             technical projects, including refactoring our graphing-library
             usage.
@@ -101,7 +113,8 @@ import './_root.css';
       <section id="experience" class="section">
         <div class="section-heading">
           <h2>Experience</h2>
-        </div><Career />
+        </div>
+        <Career />
       </section>
       <section
         class="section capabilities"
@@ -109,27 +122,35 @@ import './_root.css';
       >
         <div>
           <h2 id="capabilities-title">Technical skills</h2>
-        </div><div class="capability-grid">
+        </div>
+        <div class="capability-grid">
           <div>
-            <h3>Product engineering</h3><p>
+            <h3>Product engineering</h3>
+            <p>
               React, React Native, ReScript and TypeScript. Building interfaces
               and application logic together, with experience across web and
               mobile.
             </p>
-          </div><div>
-            <h3>Integrations & reliability</h3><p>
+          </div>
+          <div>
+            <h3>Integrations & reliability</h3>
+            <p>
               APIs, webhooks, data modelling and transactional outboxes.
               Connecting services while accounting for failures and the people
               using them.
             </p>
-          </div><div>
-            <h3>Planning & delivery</h3><p>
+          </div>
+          <div>
+            <h3>Planning & delivery</h3>
+            <p>
               Provider evaluation, achievable milestones, stakeholder
               conversations and work allocation that reflects the team’s
               strengths.
             </p>
-          </div><div>
-            <h3>Engineering foundations</h3><p>
+          </div>
+          <div>
+            <h3>Engineering foundations</h3>
+            <p>
               Experience with Relay, Feathers.js, BigQuery, Java/Spring and
               automated testing. I seek infrastructure specialists’ input where
               operational decisions need deeper expertise.
@@ -140,34 +161,52 @@ import './_root.css';
       <section class="section personal" aria-labelledby="beyond-title">
         <div>
           <h2 id="beyond-title">Projects & interests</h2>
-        </div><div>
+        </div>
+        <div>
           <p>
             I built <a href="https://git-gif.vercel.app">Git gif</a> to turn
             videos into GIFs for pull requests, making it easier to show visual
             changes.
-          </p><p>
+          </p>
+          <p>
+            I’m also building Loom, a personal Electron app that turns my
+            preferred workflow with Codex and Claude into a repeatable process
+            outside the terminal. It takes repository-based tasks through
+            clarification, an explicit approval gate, implementation and
+            human-plus-agent review. A planned website and server will make that
+            workflow available remotely, with phone controls, push notifications
+            and live WebSocket updates; those remote features are not yet
+            implemented.
+          </p>
+          <p>
             Away from code, I enjoy cooking, from a meal for two to a table full
-            of people. My <a href="/cooking/christmas/"
-              >Christmas dinner planner</a
-            > brings a little engineering organisation to the kitchen.
+            of people. My{' '}
+            <a href="/cooking/christmas/">Christmas dinner planner</a> brings a
+            little engineering organisation to the kitchen.
           </p>
         </div>
       </section>
       <section id="contact" class="contact section">
-        <h2>Contact</h2><p>
+        <h2>Contact</h2>
+        <p>
           I’m open to conversations about engineering lead roles. I prefer
           remote work with occasional London get-togethers, and I’m also open to
           full-time office-based roles in Bristol or Cardiff.
-        </p><div class="contact-links">
-          <a class="contact-email" href="mailto:resume@nfitton.com"
-            >resume@nfitton.com <span aria-hidden="true">↗</span></a
-          ><a class="text-link" href="/nicholas-fitton-cv.pdf" download
-            >Download CV <span aria-hidden="true">↓</span></a>
+        </p>
+        <div class="contact-links">
+          <a class="contact-email" href="mailto:resume@nfitton.com">
+            resume@nfitton.com <span aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" href="/nicholas-fitton-cv.pdf" download>
+            Download CV <span aria-hidden="true">↓</span>
+          </a>
         </div>
       </section>
-    </main><footer class="footer">
-      <span>Nicholas Fitton</span><span>Chepstow, South Wales</span><a
-        href="#main">Back to top ↑</a>
+    </main>
+    <footer class="footer">
+      <span>Nicholas Fitton</span>
+      <span>Chepstow, South Wales</span>
+      <a href="#main">Back to top ↑</a>
     </footer>
   </div>
 </Layout>
